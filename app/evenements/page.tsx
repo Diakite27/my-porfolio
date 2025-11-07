@@ -8,159 +8,386 @@ import { Badge } from "@/components/ui/badge"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Calendar, MapPin, Users, Mic, Award, Briefcase, Globe, ExternalLink, Video, FileText } from "lucide-react"
+import { useLanguage } from "@/components/navigation"
+
+// Traductions
+const translations = {
+  fr: {
+    pageTitle: "Événements & Participations",
+    pageSubtitle: "Conférences internationales, rencontres officielles et sommets technologiques",
+    stats: {
+      events: "Événements",
+      countries: "Pays",
+      participants: "Participants",
+      media: "Médias",
+    },
+    filters: {
+      all: "Tous",
+      conference: "Conférences",
+      award: "Cérémonies",
+      meeting: "Rencontres",
+      summit: "Sommets",
+    },
+    views: {
+      grid: "Grille",
+      timeline: "Timeline",
+    },
+    labels: {
+      seeDetails: "Voir les détails",
+      date: "Date",
+      location: "Lieu",
+      role: "Rôle",
+      participants: "Participants",
+      type: "Type",
+      description: "Description",
+      details: "Détails",
+      highlights: "Points Forts",
+      mediaResources: "Médias & Ressources",
+    },
+    events: [
+      {
+        title: "World Economic Forum 2024",
+        role: "Panéliste Principal",
+        description: "Participation au panel 'Future of AI in Society' devant les leaders mondiaux",
+        details: "Présentation des enjeux éthiques de l'IA et proposition de frameworks de gouvernance internationale. Discussion avec des PDG de Fortune 500 et des dirigeants politiques sur l'avenir technologique.",
+        attendees: "3000+ leaders mondiaux",
+        highlights: [
+          "Keynote devant 500+ dirigeants",
+          "Rencontre avec 15 ministres",
+          "Signature d'accords de coopération",
+          "Interview CNN International",
+        ],
+        media: [
+          { title: "Keynote WEF 2024" },
+          { title: "Article Forbes" },
+        ],
+      },
+      {
+        title: "Tech Innovation Summit Paris",
+        role: "Keynote Speaker",
+        description: "Conférence principale sur 'L'avenir de l'Intelligence Artificielle en Europe'",
+        details: "Présentation des dernières avancées en IA responsable et démonstration de technologies révolutionnaires. Plus de 2000 participants de 40 pays.",
+        attendees: "2000+ professionnels tech",
+        highlights: [
+          "Keynote de 45 minutes",
+          "Q&A avec 500+ questions",
+          "Démonstration technologique live",
+          "Prix du meilleur speaker",
+        ],
+        media: [
+          { title: "Keynote complète" },
+          { title: "Slides de présentation" },
+        ],
+      },
+      {
+        title: "Rencontre Présidentielle Élysée",
+        role: "Conseiller Innovation",
+        description: "Consultation privée avec le Président sur la stratégie nationale d'IA",
+        details: "Réunion de travail de 2 heures pour définir la politique française en matière d'intelligence artificielle et d'innovation technologique. Présentation de recommandations stratégiques.",
+        attendees: "Réunion privée",
+        highlights: [
+          "Présentation stratégie IA France",
+          "Recommandations politiques",
+          "Nomination au conseil consultatif",
+          "Communiqué de presse officiel",
+        ],
+        media: [
+          { title: "Communiqué Élysée" },
+        ],
+      },
+      {
+        title: "Global AI Ethics Conference",
+        role: "Modérateur Principal",
+        description: "Modération des débats sur l'éthique de l'IA avec les plus grands experts mondiaux",
+        details: "Animation de 6 panels sur l'éthique de l'IA, la gouvernance algorithmique et l'impact social des technologies émergentes. Coordination avec Stanford, MIT et Oxford.",
+        attendees: "800+ chercheurs et experts",
+        highlights: [
+          "Modération de 6 panels",
+          "Collaboration Stanford-MIT-Oxford",
+          "Publication rapport final",
+          "Création groupe de travail international",
+        ],
+        media: [
+          { title: "Panels complets" },
+          { title: "Rapport final" },
+        ],
+      },
+      {
+        title: "Cérémonie Prix Innovation UNESCO",
+        role: "Lauréat",
+        description: "Réception du Prix UNESCO pour l'Innovation Technologique au Service de l'Humanité",
+        details: "Reconnaissance internationale pour le développement de technologies d'IA au service de l'éducation dans les pays en développement. Cérémonie en présence de 50 ambassadeurs.",
+        attendees: "300+ diplomates et experts",
+        highlights: [
+          "Discours de remerciement",
+          "Rencontre avec 50 ambassadeurs",
+          "Signature partenariats internationaux",
+          "Couverture médiatique mondiale",
+        ],
+        media: [
+          { title: "Cérémonie complète" },
+          { title: "Communiqué UNESCO" },
+        ],
+      },
+      {
+        title: "European Tech Leaders Summit",
+        role: "Co-organisateur",
+        description: "Co-organisation du sommet réunissant les 100 plus jeunes leaders tech d'Europe",
+        details: "Coordination de l'événement avec la Commission Européenne pour définir l'avenir technologique de l'Europe. Création d'un manifeste pour l'innovation européenne.",
+        attendees: "100 leaders tech européens",
+        highlights: [
+          "Co-organisation complète",
+          "Création manifeste européen",
+          "Partenariat Commission UE",
+          "Lancement initiatives communes",
+        ],
+        media: [
+          { title: "Manifeste Tech Europe" },
+          { title: "Highlights du sommet" },
+        ],
+      },
+    ],
+  },
+  en: {
+    pageTitle: "Events & Participations",
+    pageSubtitle: "International conferences, official meetings and technology summits",
+    stats: {
+      events: "Events",
+      countries: "Countries",
+      participants: "Participants",
+      media: "Media",
+    },
+    filters: {
+      all: "All",
+      conference: "Conferences",
+      award: "Ceremonies",
+      meeting: "Meetings",
+      summit: "Summits",
+    },
+    views: {
+      grid: "Grid",
+      timeline: "Timeline",
+    },
+    labels: {
+      seeDetails: "See details",
+      date: "Date",
+      location: "Location",
+      role: "Role",
+      participants: "Participants",
+      type: "Type",
+      description: "Description",
+      details: "Details",
+      highlights: "Highlights",
+      mediaResources: "Media & Resources",
+    },
+    events: [
+      {
+        title: "World Economic Forum 2024",
+        role: "Lead Panelist",
+        description: "Participation in 'Future of AI in Society' panel before world leaders",
+        details: "Presentation of AI ethical issues and proposal of international governance frameworks. Discussion with Fortune 500 CEOs and political leaders on technological future.",
+        attendees: "3000+ world leaders",
+        highlights: [
+          "Keynote to 500+ executives",
+          "Meeting with 15 ministers",
+          "Cooperation agreements signed",
+          "CNN International interview",
+        ],
+        media: [
+          { title: "WEF 2024 Keynote" },
+          { title: "Forbes Article" },
+        ],
+      },
+      {
+        title: "Tech Innovation Summit Paris",
+        role: "Keynote Speaker",
+        description: "Main conference on 'The Future of Artificial Intelligence in Europe'",
+        details: "Presentation of latest advances in responsible AI and demonstration of revolutionary technologies. Over 2000 participants from 40 countries.",
+        attendees: "2000+ tech professionals",
+        highlights: [
+          "45-minute keynote",
+          "Q&A with 500+ questions",
+          "Live technology demonstration",
+          "Best speaker award",
+        ],
+        media: [
+          { title: "Full keynote" },
+          { title: "Presentation slides" },
+        ],
+      },
+      {
+        title: "Presidential Meeting at Élysée",
+        role: "Innovation Advisor",
+        description: "Private consultation with the President on national AI strategy",
+        details: "2-hour working meeting to define French policy on artificial intelligence and technological innovation. Presentation of strategic recommendations.",
+        attendees: "Private meeting",
+        highlights: [
+          "France AI strategy presentation",
+          "Policy recommendations",
+          "Advisory board appointment",
+          "Official press release",
+        ],
+        media: [
+          { title: "Élysée Press Release" },
+        ],
+      },
+      {
+        title: "Global AI Ethics Conference",
+        role: "Lead Moderator",
+        description: "Moderation of debates on AI ethics with world's leading experts",
+        details: "Facilitation of 6 panels on AI ethics, algorithmic governance and social impact of emerging technologies. Coordination with Stanford, MIT and Oxford.",
+        attendees: "800+ researchers and experts",
+        highlights: [
+          "Moderation of 6 panels",
+          "Stanford-MIT-Oxford collaboration",
+          "Final report publication",
+          "International working group creation",
+        ],
+        media: [
+          { title: "Complete panels" },
+          { title: "Final report" },
+        ],
+      },
+      {
+        title: "UNESCO Innovation Award Ceremony",
+        role: "Laureate",
+        description: "Reception of UNESCO Award for Technological Innovation in Service of Humanity",
+        details: "International recognition for developing AI technologies serving education in developing countries. Ceremony attended by 50 ambassadors.",
+        attendees: "300+ diplomats and experts",
+        highlights: [
+          "Acceptance speech",
+          "Meeting with 50 ambassadors",
+          "International partnerships signed",
+          "Worldwide media coverage",
+        ],
+        media: [
+          { title: "Full ceremony" },
+          { title: "UNESCO Press Release" },
+        ],
+      },
+      {
+        title: "European Tech Leaders Summit",
+        role: "Co-organizer",
+        description: "Co-organization of summit bringing together Europe's 100 youngest tech leaders",
+        details: "Event coordination with European Commission to define Europe's technological future. Creation of manifesto for European innovation.",
+        attendees: "100 European tech leaders",
+        highlights: [
+          "Full co-organization",
+          "European manifesto creation",
+          "EU Commission partnership",
+          "Joint initiatives launch",
+        ],
+        media: [
+          { title: "Tech Europe Manifesto" },
+          { title: "Summit highlights" },
+        ],
+      },
+    ],
+  },
+}
 
 export default function EvenementsPage() {
   const [selectedType, setSelectedType] = useState("all")
+  const { language } = useLanguage()
+
+  const t = (key: string) => {
+    const keys = key.split('.')
+    let value: any = translations[language]
+    for (const k of keys) {
+      value = value?.[k]
+    }
+    return value || key
+  }
 
   const eventTypes = [
-    { id: "all", label: "Tous", icon: Calendar },
-    { id: "conference", label: "Conférences", icon: Mic },
-    { id: "award", label: "Cérémonies", icon: Award },
-    { id: "meeting", label: "Rencontres", icon: Briefcase },
-    { id: "summit", label: "Sommets", icon: Globe },
+    { id: "all", label: t("filters.all"), icon: Calendar },
+    { id: "conference", label: t("filters.conference"), icon: Mic },
+    { id: "award", label: t("filters.award"), icon: Award },
+    { id: "meeting", label: t("filters.meeting"), icon: Briefcase },
+    { id: "summit", label: t("filters.summit"), icon: Globe },
   ]
 
-  const events = [
+  const eventsData = [
     {
       id: 1,
-      title: "World Economic Forum 2024",
       type: "summit",
       date: "2024-01-15",
       endDate: "2024-01-19",
       location: "Davos, Suisse",
-      role: "Panéliste Principal",
-      description: "Participation au panel 'Future of AI in Society' devant les leaders mondiaux",
-      details:
-        "Présentation des enjeux éthiques de l'IA et proposition de frameworks de gouvernance internationale. Discussion avec des PDG de Fortune 500 et des dirigeants politiques sur l'avenir technologique.",
-      attendees: "3000+ leaders mondiaux",
       image: "/placeholder.svg?height=300&width=500&text=WEF+Davos+2024",
-      highlights: [
-        "Keynote devant 500+ dirigeants",
-        "Rencontre avec 15 ministres",
-        "Signature d'accords de coopération",
-        "Interview CNN International",
-      ],
-      media: [
-        { type: "video", title: "Keynote WEF 2024", url: "#" },
-        { type: "article", title: "Article Forbes", url: "#" },
+      mediaUrls: [
+        { type: "video", url: "#" },
+        { type: "article", url: "#" },
       ],
     },
     {
       id: 2,
-      title: "Tech Innovation Summit Paris",
       type: "conference",
       date: "2024-03-10",
       endDate: "2024-03-12",
       location: "Paris, France",
-      role: "Keynote Speaker",
-      description: "Conférence principale sur 'L'avenir de l'Intelligence Artificielle en Europe'",
-      details:
-        "Présentation des dernières avancées en IA responsable et démonstration de technologies révolutionnaires. Plus de 2000 participants de 40 pays.",
-      attendees: "2000+ professionnels tech",
       image: "/placeholder.svg?height=300&width=500&text=Tech+Summit+Paris",
-      highlights: [
-        "Keynote de 45 minutes",
-        "Q&A avec 500+ questions",
-        "Démonstration technologique live",
-        "Prix du meilleur speaker",
-      ],
-      media: [
-        { type: "video", title: "Keynote complète", url: "#" },
-        { type: "presentation", title: "Slides de présentation", url: "#" },
+      mediaUrls: [
+        { type: "video", url: "#" },
+        { type: "presentation", url: "#" },
       ],
     },
     {
       id: 3,
-      title: "Rencontre Présidentielle Élysée",
       type: "meeting",
       date: "2023-11-20",
       location: "Palais de l'Élysée, Paris",
-      role: "Conseiller Innovation",
-      description: "Consultation privée avec le Président sur la stratégie nationale d'IA",
-      details:
-        "Réunion de travail de 2 heures pour définir la politique française en matière d'intelligence artificielle et d'innovation technologique. Présentation de recommandations stratégiques.",
-      attendees: "Réunion privée",
       image: "/placeholder.svg?height=300&width=500&text=Élysée+Meeting",
-      highlights: [
-        "Présentation stratégie IA France",
-        "Recommandations politiques",
-        "Nomination au conseil consultatif",
-        "Communiqué de presse officiel",
+      mediaUrls: [
+        { type: "article", url: "#" },
       ],
-      media: [{ type: "article", title: "Communiqué Élysée", url: "#" }],
     },
     {
       id: 4,
-      title: "Global AI Ethics Conference",
       type: "conference",
       date: "2023-09-15",
       endDate: "2023-09-17",
       location: "Stanford, USA",
-      role: "Modérateur Principal",
-      description: "Modération des débats sur l'éthique de l'IA avec les plus grands experts mondiaux",
-      details:
-        "Animation de 6 panels sur l'éthique de l'IA, la gouvernance algorithmique et l'impact social des technologies émergentes. Coordination avec Stanford, MIT et Oxford.",
-      attendees: "800+ chercheurs et experts",
       image: "/placeholder.svg?height=300&width=500&text=AI+Ethics+Stanford",
-      highlights: [
-        "Modération de 6 panels",
-        "Collaboration Stanford-MIT-Oxford",
-        "Publication rapport final",
-        "Création groupe de travail international",
-      ],
-      media: [
-        { type: "video", title: "Panels complets", url: "#" },
-        { type: "document", title: "Rapport final", url: "#" },
+      mediaUrls: [
+        { type: "video", url: "#" },
+        { type: "document", url: "#" },
       ],
     },
     {
       id: 5,
-      title: "Cérémonie Prix Innovation UNESCO",
       type: "award",
       date: "2023-06-25",
       location: "Siège UNESCO, Paris",
-      role: "Lauréat",
-      description: "Réception du Prix UNESCO pour l'Innovation Technologique au Service de l'Humanité",
-      details:
-        "Reconnaissance internationale pour le développement de technologies d'IA au service de l'éducation dans les pays en développement. Cérémonie en présence de 50 ambassadeurs.",
-      attendees: "300+ diplomates et experts",
       image: "/placeholder.svg?height=300&width=500&text=UNESCO+Award",
-      highlights: [
-        "Discours de remerciement",
-        "Rencontre avec 50 ambassadeurs",
-        "Signature partenariats internationaux",
-        "Couverture médiatique mondiale",
-      ],
-      media: [
-        { type: "video", title: "Cérémonie complète", url: "#" },
-        { type: "article", title: "Communiqué UNESCO", url: "#" },
+      mediaUrls: [
+        { type: "video", url: "#" },
+        { type: "article", url: "#" },
       ],
     },
     {
       id: 6,
-      title: "European Tech Leaders Summit",
       type: "summit",
       date: "2023-04-08",
       endDate: "2023-04-10",
       location: "Berlin, Allemagne",
-      role: "Co-organisateur",
-      description: "Co-organisation du sommet réunissant les 100 plus jeunes leaders tech d'Europe",
-      details:
-        "Coordination de l'événement avec la Commission Européenne pour définir l'avenir technologique de l'Europe. Création d'un manifeste pour l'innovation européenne.",
-      attendees: "100 leaders tech européens",
       image: "/placeholder.svg?height=300&width=500&text=EU+Tech+Summit",
-      highlights: [
-        "Co-organisation complète",
-        "Création manifeste européen",
-        "Partenariat Commission UE",
-        "Lancement initiatives communes",
-      ],
-      media: [
-        { type: "document", title: "Manifeste Tech Europe", url: "#" },
-        { type: "video", title: "Highlights du sommet", url: "#" },
+      mediaUrls: [
+        { type: "document", url: "#" },
+        { type: "video", url: "#" },
       ],
     },
   ]
+
+  // Merge events data with translations
+  const events = eventsData.map((data, idx) => ({
+    ...data,
+    ...t('events')[idx],
+    media: data.mediaUrls.map((urlData, mediaIdx) => ({
+      ...urlData,
+      title: t('events')[idx].media[mediaIdx].title,
+    })),
+  }))
 
   const filteredEvents = selectedType === "all" ? events : events.filter((event) => event.type === selectedType)
 
@@ -189,10 +416,12 @@ export default function EvenementsPage() {
       day: "numeric",
     }
 
+    const locale = language === 'fr' ? 'fr-FR' : 'en-US'
+
     if (endDate && endDate.getTime() !== date.getTime()) {
-      return `${date.toLocaleDateString("fr-FR", options)} - ${endDate.toLocaleDateString("fr-FR", options)}`
+      return `${date.toLocaleDateString(locale, options)} - ${endDate.toLocaleDateString(locale, options)}`
     }
-    return date.toLocaleDateString("fr-FR", options)
+    return date.toLocaleDateString(locale, options)
   }
 
   const getMediaIcon = (type: string) => {
@@ -216,29 +445,29 @@ export default function EvenementsPage() {
           {/* Header */}
           <div className="text-center mb-12">
             <h1 className="text-4xl lg:text-5xl font-bold text-foreground mb-4 text-balance">
-              Événements & Participations
+              {t('pageTitle')}
             </h1>
             <p className="text-xl text-muted-foreground mb-8 text-pretty">
-              Conférences internationales, rencontres officielles et sommets technologiques
+              {t('pageSubtitle')}
             </p>
 
             {/* Stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl mx-auto">
               <div className="text-center">
                 <div className="text-3xl font-bold text-primary">25+</div>
-                <div className="text-sm text-muted-foreground">Événements</div>
+                <div className="text-sm text-muted-foreground">{t('stats.events')}</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-primary">15</div>
-                <div className="text-sm text-muted-foreground">Pays</div>
+                <div className="text-sm text-muted-foreground">{t('stats.countries')}</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-primary">50k+</div>
-                <div className="text-sm text-muted-foreground">Participants</div>
+                <div className="text-sm text-muted-foreground">{t('stats.participants')}</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-primary">100+</div>
-                <div className="text-sm text-muted-foreground">Médias</div>
+                <div className="text-sm text-muted-foreground">{t('stats.media')}</div>
               </div>
             </div>
           </div>
@@ -266,8 +495,8 @@ export default function EvenementsPage() {
 
               {/* View Toggle */}
               <TabsList className="grid w-full max-w-[200px] grid-cols-2">
-                <TabsTrigger value="grid">Grille</TabsTrigger>
-                <TabsTrigger value="timeline">Timeline</TabsTrigger>
+                <TabsTrigger value="grid">{t('views.grid')}</TabsTrigger>
+                <TabsTrigger value="timeline">{t('views.timeline')}</TabsTrigger>
               </TabsList>
             </div>
 
@@ -322,7 +551,7 @@ export default function EvenementsPage() {
                                 size="sm"
                                 className="text-primary hover:text-primary/80 p-0 h-auto"
                               >
-                                Voir les détails
+                                {t('labels.seeDetails')}
                               </Button>
                             </div>
                           </CardContent>
@@ -345,21 +574,21 @@ export default function EvenementsPage() {
                               <div className="flex items-center space-x-2">
                                 <Calendar className="h-5 w-5 text-primary" />
                                 <div>
-                                  <span className="font-medium">Date:</span>
+                                  <span className="font-medium">{t('labels.date')}:</span>
                                   <div className="text-muted-foreground">{formatDate(event.date, event.endDate)}</div>
                                 </div>
                               </div>
                               <div className="flex items-center space-x-2">
                                 <MapPin className="h-5 w-5 text-primary" />
                                 <div>
-                                  <span className="font-medium">Lieu:</span>
+                                  <span className="font-medium">{t('labels.location')}:</span>
                                   <div className="text-muted-foreground">{event.location}</div>
                                 </div>
                               </div>
                               <div className="flex items-center space-x-2">
                                 <Briefcase className="h-5 w-5 text-primary" />
                                 <div>
-                                  <span className="font-medium">Rôle:</span>
+                                  <span className="font-medium">{t('labels.role')}:</span>
                                   <div className="text-muted-foreground">{event.role}</div>
                                 </div>
                               </div>
@@ -369,14 +598,14 @@ export default function EvenementsPage() {
                               <div className="flex items-center space-x-2">
                                 <Users className="h-5 w-5 text-primary" />
                                 <div>
-                                  <span className="font-medium">Participants:</span>
+                                  <span className="font-medium">{t('labels.participants')}:</span>
                                   <div className="text-muted-foreground">{event.attendees}</div>
                                 </div>
                               </div>
                               <div className="flex items-center space-x-2">
                                 <TypeIcon className="h-5 w-5 text-primary" />
                                 <div>
-                                  <span className="font-medium">Type:</span>
+                                  <span className="font-medium">{t('labels.type')}:</span>
                                   <div className="text-muted-foreground">
                                     {eventTypes.find((t) => t.id === event.type)?.label}
                                   </div>
@@ -387,17 +616,17 @@ export default function EvenementsPage() {
 
                           <div className="space-y-4">
                             <div>
-                              <h4 className="font-semibold text-foreground mb-2">Description</h4>
+                              <h4 className="font-semibold text-foreground mb-2">{t('labels.description')}</h4>
                               <p className="text-muted-foreground leading-relaxed">{event.description}</p>
                             </div>
 
                             <div>
-                              <h4 className="font-semibold text-foreground mb-2">Détails</h4>
+                              <h4 className="font-semibold text-foreground mb-2">{t('labels.details')}</h4>
                               <p className="text-muted-foreground leading-relaxed">{event.details}</p>
                             </div>
 
                             <div>
-                              <h4 className="font-semibold text-foreground mb-3">Points Forts</h4>
+                              <h4 className="font-semibold text-foreground mb-3">{t('labels.highlights')}</h4>
                               <ul className="space-y-2">
                                 {event.highlights.map((highlight, index) => (
                                   <li key={index} className="flex items-start space-x-2">
@@ -410,7 +639,7 @@ export default function EvenementsPage() {
 
                             {event.media && event.media.length > 0 && (
                               <div>
-                                <h4 className="font-semibold text-foreground mb-3">Médias & Ressources</h4>
+                                <h4 className="font-semibold text-foreground mb-3">{t('labels.mediaResources')}</h4>
                                 <div className="grid md:grid-cols-2 gap-3">
                                   {event.media.map((media, index) => {
                                     const MediaIcon = getMediaIcon(media.type)
