@@ -8,9 +8,8 @@ import { LanguageProvider } from "@/components/navigation"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "Portfolio Personnel - Excellence & Innovation",
-  description: "Site personnel d'un jeune professionnel distingué, lauréat de prix internationaux",
-  generator: "v0.app",
+  title: "Yacouba DIAKITE — Double Champion du Monde en Informatique",
+  description: "Ingénieur Data & IA, double champion du monde Huawei ICT, lauréat du Prix National d'Excellence 2025. Portfolio personnel.",
 }
 
 export default function RootLayout({
@@ -19,7 +18,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="fr">
+    <html lang="fr" className="dark">
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable} antialiased`}>
         <LanguageProvider>
           <Suspense fallback={null}>{children}</Suspense>

@@ -1,184 +1,170 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
-import { Award, ArrowRight, FileText, ChevronDown } from "lucide-react"
+import { Award, ArrowRight, FileText, Trophy, Sparkles } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import { useState } from "react"
 import { useLanguage } from "@/components/navigation"
 
-// Traductions spécifiques au Hero
 const heroTranslations = {
   fr: {
-    championBadge: "Double Champion du Monde d'Informatique en Chine",
-    titleExcellence: "Excellence et",
-    titleInnovation: " Innovation",
-    description: "Ingénieur en Data Science & Intelligence Artificielle, passionné par la Data et le Cloud, avec une expertise reconnue en Machine Learning et en Cloud. Double champion du monde Huawei ICT en Chine et Lauréat du Prix National d'Excellence 2025 du Meilleur Talent Numérique, je cherche à relever de nouveaux défis techniques et scientifiques.",
+    badge: "Double Champion du Monde",
+    title1: "Yacouba",
+    title2: "DIAKITE",
+    subtitle: "Ingénieur Data & Intelligence Artificielle",
+    description: "Double champion du monde Huawei ICT en Chine. Lauréat du Prix National d'Excellence 2025 du Meilleur Talent Numérique. Passionné par la Data Science, le Machine Learning et le Cloud Computing.",
     viewCV: "Voir mon CV",
-    myAchievements: "Mes Distinctions",
-    internationalAwards: "Prix Internationaux",
-    certifications: "Certifications IT",
-    majorEvents: "Événements Majeurs",
-    jobTitle: "Ingénieur Data & IA",
-    name: "Yacouba DIAKITE",
+    achievements: "Mes Distinctions",
+    stat1Label: "Prix Internationaux",
+    stat2Label: "Certifications",
+    stat3Label: "Pays visités",
+    stat4Label: "Titre Mondial",
   },
   en: {
-    championBadge: "Double World Champion in Computer Science in China",
-    titleExcellence: "Excellence and",
-    titleInnovation: " Innovation",
-    description: "Data Science & Artificial Intelligence Engineer, passionate about Data and Cloud, with recognized expertise in Machine Learning and Cloud. Double world champion Huawei ICT in China and Winner of the 2025 National Excellence Award for Best Digital Talent, I seek to take on new technical and scientific challenges.",
+    badge: "Double World Champion",
+    title1: "Yacouba",
+    title2: "DIAKITE",
+    subtitle: "Data & Artificial Intelligence Engineer",
+    description: "Double world champion Huawei ICT in China. Winner of the 2025 National Excellence Award for Best Digital Talent. Passionate about Data Science, Machine Learning and Cloud Computing.",
     viewCV: "View my Resume",
-    myAchievements: "My Achievements",
-    internationalAwards: "International Awards",
-    certifications: "IT Certifications",
-    majorEvents: "Major Events",
-    jobTitle: "Data & AI Engineer",
-    name: "Yacouba DIAKITE",
+    achievements: "My Achievements",
+    stat1Label: "International Awards",
+    stat2Label: "Certifications",
+    stat3Label: "Countries visited",
+    stat4Label: "World Title",
   },
 }
 
 export function HeroSection() {
-  const [isVideoLoaded, setIsVideoLoaded] = useState(false)
   const { language } = useLanguage()
-
-  // Fonction de traduction pour ce composant
-  const t = (key: string) => {
-    return heroTranslations[language][key as keyof typeof heroTranslations.fr] || key
-  }
+  const t = heroTranslations[language]
 
   return (
-    <>
-      {/* Section 1: Vidéo plein écran RESPONSIVE avec effets brillants */}
-      <section className="relative h-[60vh] sm:h-[70vh] md:h-[80vh] lg:h-screen w-full overflow-hidden">
-        {/* Video seule */}
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-          onLoadedData={() => setIsVideoLoaded(true)}
-        >
-          <source src="/plateau-tv.mp4" type="video/mp4" />
-          {/* Image de secours */}
-          <img 
-            src="/prof.jpeg" 
-            alt="Background" 
-            className="absolute w-full h-full object-cover" 
-          />
-        </video>
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-grid">
+      {/* Background effects */}
+      <div className="absolute inset-0">
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#C9A84C]/5 rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#00D4FF]/5 rounded-full blur-[120px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#C9A84C]/3 rounded-full blur-[200px]" />
+      </div>
 
-        {/* Overlay avec gradient animé */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-accent/20 animate-gradient" />
-        
-        {/* Effet de brillance qui traverse l'écran */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -inset-full bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shine" />
-        </div>
-
-        {/* Particules brillantes flottantes */}
-        <div className="absolute inset-0 pointer-events-none">
-          {[...Array(20)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-1 h-1 bg-white/60 rounded-full animate-float"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 5}s`,
-                animationDuration: `${3 + Math.random() * 4}s`,
-              }}
-            />
-          ))}
-        </div>
-
-        {/* Effet de grille holographique subtil */}
-        <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:50px_50px] pointer-events-none" />
-
-        {/* Overlay léger pour améliorer la lisibilité */}
-        <div className="absolute inset-0 bg-black/20" />
-
-        {/* Indicateur de scroll discret */}
-        <div className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 text-white/60 animate-bounce">
-          <ChevronDown className="h-5 w-5 sm:h-6 sm:w-6" />
-        </div>
-      </section>
-
-      {/* Section 2: Votre bloc de présentation original */}
-      <section className="relative py-12 sm:py-16 md:py-20 px-4 bg-gradient-to-br from-background to-secondary/30">
-        <div className="container mx-auto max-w-6xl">
-          <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
-            {/* Content */}
-            <div className="space-y-6 sm:space-y-8">
-              <div className="space-y-4">
-                <div className="inline-flex items-center space-x-2 bg-accent text-accent-foreground px-3 py-1 rounded-full text-xs sm:text-sm font-medium">
-                  <Award className="h-3 w-3 sm:h-4 sm:w-4" />
-                  <span className="line-clamp-2 sm:line-clamp-1">{t("championBadge")}</span>
-                </div>
-                <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-foreground leading-tight text-balance">
-                  {t("titleExcellence")}
-                  <span className="text-primary">{t("titleInnovation")}</span>
-                </h1>
-                <p className="text-base sm:text-lg lg:text-xl text-muted-foreground leading-relaxed text-pretty text-justify">
-                  {t("description")}
-                </p>
-              </div>
-
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="bg-primary hover:bg-primary/90 w-full sm:w-auto" asChild>
-                  <Link href="/cv">
-                    <FileText className="mr-2 h-5 w-5" />
-                    {t("viewCV")}
-                  </Link>
-                </Button>
-                <Button size="lg" variant="outline" className="w-full sm:w-auto" asChild>
-                  <Link href="/distinctions">
-                    {t("myAchievements")}
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Link>
-                </Button>
-              </div>
-
-              {/* Quick Stats */}
-              <div className="grid grid-cols-3 gap-4 sm:gap-6 pt-6 sm:pt-8">
-                <div className="text-center">
-                  <div className="text-xl sm:text-2xl font-bold text-primary">5+</div>
-                  <div className="text-xs sm:text-sm text-muted-foreground">{t("internationalAwards")}</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-xl sm:text-2xl font-bold text-primary">10+</div>
-                  <div className="text-xs sm:text-sm text-muted-foreground">{t("certifications")}</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-xl sm:text-2xl font-bold text-primary">5+</div>
-                  <div className="text-xs sm:text-sm text-muted-foreground">{t("majorEvents")}</div>
-                </div>
-              </div>
+      <div className="container mx-auto px-4 sm:px-6 pt-24 pb-16 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Left — Text */}
+          <div className="space-y-8 animate-fade-up">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#C9A84C]/30 bg-[#C9A84C]/5">
+              <Trophy className="h-4 w-4 text-[#C9A84C]" />
+              <span className="text-sm font-medium text-[#C9A84C]">{t.badge}</span>
+              <Sparkles className="h-3 w-3 text-[#C9A84C]" />
             </div>
 
-            {/* Profile Image */}
-            <div className="relative mt-8 lg:mt-0">
-              <Card className="p-6 sm:p-8 bg-card/50 backdrop-blur">
-                <div className="aspect-square rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 relative overflow-hidden">
-                  <Image
-                    src="/prof.jpeg"
-                    alt={t("name")}
-                    fill
-                    className="object-cover rounded-2xl"
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                    priority
-                  />
+            {/* Name */}
+            <div>
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]">
+                <span className="text-foreground">{t.title1}</span>
+                <br />
+                <span className="text-gradient-gold">{t.title2}</span>
+              </h1>
+              <p className="mt-4 text-lg sm:text-xl text-[#00D4FF] font-medium" style={{ fontFamily: 'var(--font-display)' }}>
+                {t.subtitle}
+              </p>
+            </div>
+
+            {/* Description */}
+            <p className="text-muted-foreground text-base sm:text-lg max-w-xl leading-relaxed">
+              {t.description}
+            </p>
+
+            {/* CTA */}
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button
+                size="lg"
+                className="bg-gradient-to-r from-[#C9A84C] to-[#E2C97E] text-[#050507] hover:opacity-90 font-semibold shadow-lg shadow-[#C9A84C]/20 hover:shadow-[#C9A84C]/40"
+                asChild
+              >
+                <Link href="/cv">
+                  <FileText className="mr-2 h-5 w-5" />
+                  {t.viewCV}
+                </Link>
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-[#1E1E24] hover:border-[#C9A84C]/30 hover:bg-[#C9A84C]/5 text-foreground"
+                asChild
+              >
+                <Link href="/distinctions">
+                  {t.achievements}
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
+            </div>
+
+            {/* Stats */}
+            <div className="grid grid-cols-4 gap-4 pt-4">
+              {[
+                { value: "5+", label: t.stat1Label },
+                { value: "10+", label: t.stat2Label },
+                { value: "15+", label: t.stat3Label },
+                { value: "2x", label: t.stat4Label },
+              ].map((stat, i) => (
+                <div key={i} className="text-center">
+                  <div className="text-2xl sm:text-3xl font-bold text-gradient-gold" style={{ fontFamily: 'var(--font-display)' }}>
+                    {stat.value}
+                  </div>
+                  <div className="text-xs sm:text-sm text-muted-foreground mt-1">{stat.label}</div>
                 </div>
-                <div className="mt-4 sm:mt-6 text-center">
-                  <h3 className="text-lg sm:text-xl font-semibold text-foreground">{t("name")}</h3>
-                  <p className="text-sm sm:text-base text-muted-foreground">{t("jobTitle")}</p>
+              ))}
+            </div>
+          </div>
+
+          {/* Right — Photo */}
+          <div className="relative flex justify-center lg:justify-end" style={{ animationDelay: '0.2s' }}>
+            <div className="relative">
+              {/* Glow behind photo */}
+              <div className="absolute -inset-4 bg-gradient-to-br from-[#C9A84C]/20 via-transparent to-[#00D4FF]/20 rounded-3xl blur-2xl" />
+
+              {/* Photo container */}
+              <div className="relative w-72 h-72 sm:w-96 sm:h-96 lg:w-[420px] lg:h-[420px] rounded-3xl overflow-hidden border border-[#C9A84C]/20 shadow-2xl shadow-[#C9A84C]/10">
+                <Image
+                  src="/prof.jpeg"
+                  alt="Yacouba DIAKITE"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 640px) 288px, (max-width: 1024px) 384px, 420px"
+                  priority
+                />
+                {/* Overlay gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#050507]/60 via-transparent to-transparent" />
+
+                {/* Bottom info */}
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <div className="flex items-center gap-2">
+                    <Award className="h-5 w-5 text-[#C9A84C]" />
+                    <span className="text-sm font-medium text-white/90">Huawei ICT Competition</span>
+                  </div>
+                  <p className="text-xs text-white/60 mt-1">Shenzhen, China — 2024 & 2025</p>
                 </div>
-              </Card>
+              </div>
+
+              {/* Floating badge */}
+              <div className="absolute -top-3 -right-3 bg-[#0C0C10] border border-[#C9A84C]/30 rounded-2xl px-4 py-2 shadow-xl animate-float">
+                <div className="flex items-center gap-2">
+                  <span className="text-2xl">🏆</span>
+                  <div>
+                    <div className="text-xs font-bold text-[#C9A84C]">2x World</div>
+                    <div className="text-xs text-muted-foreground">Champion</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </section>
-    </>
+      </div>
+
+      {/* Bottom fade */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#050507] to-transparent" />
+    </section>
   )
 }
