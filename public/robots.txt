@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://yacouba-diakite.vercel.app/sitemap.xml
+Sitemap: https://yacouba-diakite.com/sitemap.xml

@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Yacouba DIAKITE — Double Champion du Monde | Ingénieur Data & IA",
     description: "Double champion du monde Huawei ICT (2024 & 2025). Lauréat du Prix National d'Excellence 2025. Ingénieur Data Science & Intelligence Artificielle.",
-    url: "https://yacouba-diakite.vercel.app",
+    url: "https://yacouba-diakite.com",
     siteName: "Yacouba DIAKITE",
     images: [
       {
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     description: "Double champion du monde Huawei ICT. Ingénieur Data & IA.",
     images: ["/prof.jpeg"],
   },
-  metadataBase: new URL("https://yacouba-diakite.vercel.app"),
+  metadataBase: new URL("https://yacouba-diakite.com"),
 }
 
 export default function RootLayout({
