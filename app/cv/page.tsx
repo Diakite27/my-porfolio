@@ -67,7 +67,7 @@ const translations = {
       {
         degree: "Manager de Portefeuille de Projets - Transition Numérique (BAC +6)",
         school: "CESI",
-        period: "2025 – Présent",
+        period: "2025 – 2026",
         location: "Rouen, France",
         details: "Management de projets numériques, transformation digitale et stratégie IT",
       },
