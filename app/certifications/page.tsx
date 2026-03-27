@@ -417,40 +417,42 @@ export default function CertificationsPage() {
 
   const getDomainColor = (domain: string) => {
     const colors = {
-      cloud: "bg-blue-500/10 text-blue-600 border-blue-200",
-      development: "bg-green-500/10 text-green-600 border-green-200",
-      security: "bg-red-500/10 text-red-600 border-red-200",
-      database: "bg-purple-500/10 text-purple-600 border-purple-200",
-      mobile: "bg-orange-500/10 text-orange-600 border-orange-200",
-      web: "bg-cyan-500/10 text-cyan-600 border-cyan-200",
+      cloud: "bg-blue-500/10 text-blue-400 border-blue-500/30",
+      development: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30",
+      security: "bg-red-500/10 text-red-400 border-red-500/30",
+      database: "bg-purple-500/10 text-purple-400 border-purple-500/30",
+      mobile: "bg-orange-500/10 text-orange-400 border-orange-500/30",
+      web: "bg-cyan-500/10 text-cyan-400 border-cyan-500/30",
+      ia: "bg-amber-500/10 text-amber-400 border-amber-500/30",
+      python: "bg-yellow-500/10 text-yellow-400 border-yellow-500/30",
     }
-    return colors[domain as keyof typeof colors] || "bg-gray-500/10 text-gray-600 border-gray-200"
+    return colors[domain as keyof typeof colors] || "bg-gray-500/10 text-gray-400 border-gray-500/30"
   }
 
   const getLevelColor = (level: string) => {
     if (level.includes("Expert") || level.includes("expert")) {
-      return "bg-amber-500/10 text-amber-600 border-amber-200"
+      return "bg-amber-500/10 text-amber-400 border-amber-500/30"
     }
     if (level.includes("Professionnel") || level.includes("Professional") || level.includes("professional")) {
-      return "bg-green-500/10 text-green-600 border-green-200"
+      return "bg-emerald-500/10 text-emerald-400 border-emerald-500/30"
     }
     if (level.includes("Intermédiaire") || level.includes("Intermediate") || level.includes("intermediate")) {
-      return "bg-blue-500/10 text-blue-600 border-blue-200"
+      return "bg-blue-500/10 text-blue-400 border-blue-500/30"
     }
-    return "bg-gray-500/10 text-gray-600 border-gray-200"
+    return "bg-gray-500/10 text-gray-400 border-gray-500/30"
   }
 
   const getDifficultyColor = (difficulty: string) => {
     if (difficulty.includes("Expert") || difficulty.includes("expert")) {
-      return "text-red-600"
+      return "text-red-400"
     }
     if (difficulty.includes("Avancé") || difficulty.includes("Advanced") || difficulty.includes("advanced")) {
-      return "text-orange-600"
+      return "text-orange-400"
     }
     if (difficulty.includes("Intermédiaire") || difficulty.includes("Intermediate") || difficulty.includes("intermediate")) {
-      return "text-blue-600"
+      return "text-blue-400"
     }
-    return "text-gray-600"
+    return "text-gray-400"
   }
 
   const formatDate = (dateStr: string) => {
@@ -596,10 +598,10 @@ export default function CertificationsPage() {
                       {cert.validUntil && (
                         <div className="flex items-center justify-between text-sm">
                           <div className="flex items-center space-x-1">
-                            <CheckCircle className="h-4 w-4 text-green-600" />
+                            <CheckCircle className="h-4 w-4 text-emerald-400" />
                             <span className="text-muted-foreground">{t('labels.validUntil')}</span>
                           </div>
-                          <span className={isExpiringSoon(cert.validUntil) ? "text-red-600" : ""}>
+                          <span className={isExpiringSoon(cert.validUntil) ? "text-red-400" : ""}>
                             {formatDate(cert.validUntil)}
                           </span>
                         </div>
@@ -661,7 +663,7 @@ export default function CertificationsPage() {
                             {cert.validUntil && (
                               <div className="flex justify-between">
                                 <span className="text-muted-foreground">{t('labels.validUntilDate')}</span>
-                                <span className={isExpiringSoon(cert.validUntil) ? "text-red-600" : ""}>
+                                <span className={isExpiringSoon(cert.validUntil) ? "text-red-400" : ""}>
                                   {formatDate(cert.validUntil)}
                                 </span>
                               </div>

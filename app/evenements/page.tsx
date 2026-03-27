@@ -394,10 +394,10 @@ export default function EvenementsPage() {
 
   const getTypeColor = (type: string) => {
     const colors = {
-      conference: "bg-blue-500/10 text-blue-600 border-blue-200",
-      award: "bg-amber-500/10 text-amber-600 border-amber-200",
-      meeting: "bg-green-500/10 text-green-600 border-green-200",
-      summit: "bg-purple-500/10 text-purple-600 border-purple-200",
+      conference: "bg-blue-500/10 text-blue-400 border-blue-500/30",
+      award: "bg-amber-500/10 text-amber-400 border-amber-500/30",
+      meeting: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30",
+      summit: "bg-purple-500/10 text-purple-400 border-purple-500/30",
     }
     return colors[type as keyof typeof colors] || "bg-gray-500/10 text-gray-600 border-gray-200"
   }

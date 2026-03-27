@@ -66,13 +66,13 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
 
   const getCategoryColor = (category: string) => {
     const colors = {
-      ai: "bg-purple-500/10 text-purple-600 border-purple-200",
-      tech: "bg-blue-500/10 text-blue-600 border-blue-200",
-      innovation: "bg-green-500/10 text-green-600 border-green-200",
-      leadership: "bg-amber-500/10 text-amber-600 border-amber-200",
-      career: "bg-red-500/10 text-red-600 border-red-200",
+      ai: "bg-purple-500/10 text-purple-400 border-purple-500/30",
+      tech: "bg-blue-500/10 text-blue-400 border-blue-500/30",
+      innovation: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30",
+      leadership: "bg-amber-500/10 text-amber-400 border-amber-500/30",
+      career: "bg-red-500/10 text-red-400 border-red-500/30",
     }
-    return colors[category as keyof typeof colors] || "bg-gray-500/10 text-gray-600 border-gray-200"
+    return colors[category as keyof typeof colors] || "bg-gray-500/10 text-gray-400 border-gray-500/30"
   }
 
   return (

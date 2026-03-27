@@ -49,7 +49,7 @@ export function HeroSection() {
           loop
           muted
           playsInline
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-contain sm:object-cover bg-[#050507]"
         >
           <source src="/plateau-tv.mp4" type="video/mp4" />
         </video>
