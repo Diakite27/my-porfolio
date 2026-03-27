@@ -160,8 +160,8 @@
     line-height: 1.7;
   }
   
-  /* Smooth transitions pour tous les éléments */
-  * {
+  /* Smooth transitions pour les éléments interactifs */
+  a, button, input, select, textarea {
     @apply transition-colors duration-200;
   }
 }

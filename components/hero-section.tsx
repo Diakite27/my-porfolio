@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Award, ArrowRight, FileText, ChevronDown } from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
 import { useState } from "react"
 import { useLanguage } from "@/components/navigation"
@@ -159,11 +160,14 @@ export function HeroSection() {
             {/* Profile Image */}
             <div className="relative mt-8 lg:mt-0">
               <Card className="p-6 sm:p-8 bg-card/50 backdrop-blur">
-                <div className="aspect-square rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center overflow-hidden">
-                  <img
+                <div className="aspect-square rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 relative overflow-hidden">
+                  <Image
                     src="/prof.jpeg"
                     alt={t("name")}
-                    className="w-full h-full object-cover rounded-2xl"
+                    fill
+                    className="object-cover rounded-2xl"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    priority
                   />
                 </div>
                 <div className="mt-4 sm:mt-6 text-center">

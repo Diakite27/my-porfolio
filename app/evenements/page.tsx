@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import Image from "next/image"
 import { Calendar, MapPin, Users, Mic, Award, Briefcase, Globe, ExternalLink, Video, FileText } from "lucide-react"
 import { useLanguage } from "@/components/navigation"
 
@@ -510,10 +511,12 @@ export default function EvenementsPage() {
                       <DialogTrigger asChild>
                         <Card className="group cursor-pointer hover:shadow-lg transition-all duration-300 border-border/50 hover:border-primary/20">
                           <div className="aspect-video relative overflow-hidden rounded-t-lg">
-                            <img
+                            <Image
                               src={event.image || "/placeholder.svg"}
                               alt={event.title}
-                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                              fill
+                              className="object-cover group-hover:scale-105 transition-transform duration-300"
+                              sizes="(max-width: 768px) 100vw, 50vw"
                             />
                             <div className="absolute top-4 left-4">
                               <Badge className={getTypeColor(event.type)}>
@@ -563,10 +566,12 @@ export default function EvenementsPage() {
                           <DialogTitle className="text-2xl text-balance">{event.title}</DialogTitle>
                         </DialogHeader>
                         <div className="space-y-6">
-                          <img
+                          <Image
                             src={event.image || "/placeholder.svg"}
                             alt={event.title}
-                            className="w-full aspect-video object-cover rounded-lg"
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 768px) 100vw, 80vw"
                           />
 
                           <div className="grid md:grid-cols-2 gap-6">
@@ -628,7 +633,7 @@ export default function EvenementsPage() {
                             <div>
                               <h4 className="font-semibold text-foreground mb-3">{t('labels.highlights')}</h4>
                               <ul className="space-y-2">
-                                {event.highlights.map((highlight, index) => (
+                                {event.highlights.map((highlight: string, index: number) => (
                                   <li key={index} className="flex items-start space-x-2">
                                     <span className="text-accent mt-1">•</span>
                                     <span className="text-muted-foreground">{highlight}</span>
@@ -641,7 +646,7 @@ export default function EvenementsPage() {
                               <div>
                                 <h4 className="font-semibold text-foreground mb-3">{t('labels.mediaResources')}</h4>
                                 <div className="grid md:grid-cols-2 gap-3">
-                                  {event.media.map((media, index) => {
+                                  {event.media.map((media: { type: string; url: string; title: string }, index: number) => {
                                     const MediaIcon = getMediaIcon(media.type)
                                     return (
                                       <Button

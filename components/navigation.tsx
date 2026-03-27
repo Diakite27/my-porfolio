@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, createContext, useContext, ReactNode } from "react"
+import { useState, useEffect, createContext, useContext, useCallback, ReactNode } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Menu, X, Award, FileText, Briefcase as Certificate, BookOpen, User, Instagram, Linkedin, MessageCircle } from "lucide-react"
@@ -41,7 +41,19 @@ const translations = {
 }
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguage] = useState<'fr' | 'en'>('fr')
+  const [language, setLanguageState] = useState<'fr' | 'en'>('fr')
+
+  useEffect(() => {
+    const saved = localStorage.getItem('lang') as 'fr' | 'en' | null
+    if (saved === 'fr' || saved === 'en') {
+      setLanguageState(saved)
+    }
+  }, [])
+
+  const setLanguage = useCallback((lang: 'fr' | 'en') => {
+    setLanguageState(lang)
+    localStorage.setItem('lang', lang)
+  }, [])
 
   const t = (key: string) => {
     return translations[language][key as keyof typeof translations.fr] || key

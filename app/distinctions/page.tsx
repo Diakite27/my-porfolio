@@ -565,7 +565,7 @@ export default function DistinctionsPage() {
                               </Button>
 
                               <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-                                {selectedItem.images.map((_, index) => (
+                                {selectedItem.images.map((_: string, index: number) => (
                                   <button
                                     key={index}
                                     className={`w-2 h-2 rounded-full transition-colors ${

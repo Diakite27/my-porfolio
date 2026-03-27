@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import Image from "next/image"
 import {
   Award,
   Calendar,
@@ -549,10 +550,12 @@ export default function CertificationsPage() {
                     <CardHeader className="pb-4">
                       <div className="flex items-start space-x-4">
                         <div className="flex-shrink-0">
-                          <img
+                          <Image
                             src={cert.logo || "/placeholder.svg"}
                             alt={`${cert.provider} logo`}
-                            className="w-16 h-16 object-contain rounded-lg bg-white p-2 border"
+                            width={64}
+                            height={64}
+                            className="object-contain rounded-lg bg-white p-2 border"
                           />
                         </div>
                         <div className="flex-1 min-w-0">
@@ -612,10 +615,12 @@ export default function CertificationsPage() {
                 <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
                   <DialogHeader>
                     <DialogTitle className="text-2xl text-balance flex items-center space-x-3">
-                      <img
+                      <Image
                         src={cert.logo || "/placeholder.svg"}
                         alt={`${cert.provider} logo`}
-                        className="w-12 h-12 object-contain rounded-lg bg-white p-2 border"
+                        width={48}
+                        height={48}
+                        className="object-contain rounded-lg bg-white p-2 border"
                       />
                       <span>{cert.title}</span>
                     </DialogTitle>

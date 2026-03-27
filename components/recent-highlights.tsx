@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Award, Calendar, BookOpen, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 import { useLanguage } from "@/components/navigation"
 
 // Traductions pour le composant
@@ -90,8 +91,9 @@ const translations = {
 export function RecentHighlights() {
   const { language } = useLanguage()
   
-  const t = (key: string) => {
-    return translations[language][key as keyof typeof translations.fr] || key
+  const t = (key: string): string => {
+    const value = translations[language][key as keyof typeof translations.fr]
+    return typeof value === 'string' ? value : key
   }
 
   const highlightsData = [
@@ -158,11 +160,12 @@ export function RecentHighlights() {
   ]
 
   // Merge translations with data
+  const highlightTranslations = translations[language].highlights
   const highlights = highlightsData.map((data, idx) => ({
     ...data,
-    title: t(`highlights`)[idx]?.title || "",
-    description: t(`highlights`)[idx]?.description || "",
-    date: t(`highlights`)[idx]?.date || "",
+    title: highlightTranslations[idx]?.title || "",
+    description: highlightTranslations[idx]?.description || "",
+    date: highlightTranslations[idx]?.date || "",
   }))
 
   // State to track current image index for each highlight
@@ -224,11 +227,13 @@ export function RecentHighlights() {
                 <CardContent>
                   {/* Show image carousel if available */}
                   {highlight.images && highlight.images.length > 0 && (
-                    <div className="aspect-video rounded-lg bg-muted mb-4 overflow-hidden flex items-center justify-center relative">
-                      <img
+                    <div className="aspect-video rounded-lg bg-muted mb-4 overflow-hidden relative">
+                      <Image
                         src={currentImage}
                         alt={highlight.title}
-                        className="w-full h-full object-cover"
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 33vw"
                       />
                       {highlight.images.length > 1 && (
                         <>

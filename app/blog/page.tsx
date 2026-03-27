@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Search, Calendar, Clock, ArrowRight, Tag, TrendingUp, BookOpen, User } from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
 
 export default function BlogPage() {
@@ -479,10 +480,12 @@ L'innovation ouverte est l'avenir de l'innovation d'entreprise.`,
                 {featuredPosts.map((post) => (
                   <Card key={post.id} className="group hover:shadow-lg transition-all duration-300 overflow-hidden">
                     <div className="aspect-video relative overflow-hidden">
-                      <img
+                      <Image
                         src={post.image || "/placeholder.svg"}
                         alt={post.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        sizes="(max-width: 768px) 100vw, 50vw"
                       />
                       <div className="absolute top-4 left-4">
                         <Badge className={getCategoryColor(post.category)}>
@@ -561,10 +564,12 @@ L'innovation ouverte est l'avenir de l'innovation d'entreprise.`,
                 {filteredPosts.map((post) => (
                   <Card key={post.id} className="group hover:shadow-lg transition-all duration-300 overflow-hidden">
                     <div className="aspect-video relative overflow-hidden">
-                      <img
+                      <Image
                         src={post.image || "/placeholder.svg"}
                         alt={post.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        sizes="(max-width: 768px) 100vw, 33vw"
                       />
                       <div className="absolute top-4 left-4">
                         <Badge className={getCategoryColor(post.category)}>
