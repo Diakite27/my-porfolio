@@ -14,6 +14,29 @@ export const metadata: Metadata = {
     icon: "/favicon.png",
     apple: "/apple-icon.png",
   },
+  openGraph: {
+    title: "Yacouba DIAKITE — Double Champion du Monde | Ingénieur Data & IA",
+    description: "Double champion du monde Huawei ICT (2024 & 2025). Lauréat du Prix National d'Excellence 2025. Ingénieur Data Science & Intelligence Artificielle.",
+    url: "https://yacouba-diakite.vercel.app",
+    siteName: "Yacouba DIAKITE",
+    images: [
+      {
+        url: "/prof.jpeg",
+        width: 800,
+        height: 800,
+        alt: "Yacouba DIAKITE",
+      },
+    ],
+    locale: "fr_FR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Yacouba DIAKITE — Double Champion du Monde",
+    description: "Double champion du monde Huawei ICT. Ingénieur Data & IA.",
+    images: ["/prof.jpeg"],
+  },
+  metadataBase: new URL("https://yacouba-diakite.vercel.app"),
 }
 
 export default function RootLayout({

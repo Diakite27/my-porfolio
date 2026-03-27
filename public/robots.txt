@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://yacouba-diakite.vercel.app/sitemap.xml

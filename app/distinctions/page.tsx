@@ -307,7 +307,7 @@ export default function DistinctionsPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <div className="bg-muted/30 py-16">
+      <div className="pt-24 pb-12">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <Link

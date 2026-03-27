@@ -483,7 +483,7 @@ export default function CertificationsPage() {
     <div className="min-h-screen bg-background">
       <Navigation />
 
-      <main className="py-12 px-4">
+      <main className="pt-24 pb-16 px-4">
         <div className="container mx-auto max-w-6xl">
           {/* Header */}
           <div className="text-center mb-12">
@@ -534,7 +534,7 @@ export default function CertificationsPage() {
             {filteredCertifications.map((cert) => (
               <Dialog key={cert.id}>
                 <DialogTrigger asChild>
-                  <Card className="group cursor-pointer hover:shadow-lg transition-all duration-300 border-border/50 hover:border-primary/20 relative">
+                  <Card className="group cursor-pointer hover:shadow-lg transition-all duration-300 bg-[#0C0C10] border-[#1E1E24] hover:border-[#C9A84C]/30 relative">
                     {isExpiringSoon(cert.validUntil) && (
                       <div className="absolute top-2 right-2 z-10">
                         <Badge variant="destructive" className="text-xs">
@@ -551,7 +551,7 @@ export default function CertificationsPage() {
                             alt={`${cert.provider} logo`}
                             width={64}
                             height={64}
-                            className="object-contain rounded-lg bg-white p-2 border"
+                            className="object-contain rounded-lg bg-[#111118] p-2 border border-[#1E1E24]"
                           />
                         </div>
                         <div className="flex-1 min-w-0">
@@ -616,7 +616,7 @@ export default function CertificationsPage() {
                         alt={`${cert.provider} logo`}
                         width={48}
                         height={48}
-                        className="object-contain rounded-lg bg-white p-2 border"
+                        className="object-contain rounded-lg bg-[#111118] p-2 border border-[#1E1E24]"
                       />
                       <span>{cert.title}</span>
                     </DialogTitle>
@@ -730,7 +730,7 @@ export default function CertificationsPage() {
 
           {/* Call to Action */}
           <div className="text-center mt-16">
-            <Card className="bg-secondary/50 max-w-2xl mx-auto">
+            <Card className="bg-[#0C0C10] border-[#C9A84C]/20 max-w-2xl mx-auto">
               <CardContent className="py-8">
                 <Trophy className="h-12 w-12 text-primary mx-auto mb-4" />
                 <h3 className="text-xl font-semibold text-foreground mb-2">{t('labels.continuousTraining')}</h3>

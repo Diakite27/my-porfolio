@@ -284,7 +284,7 @@ export default function ProjetsPage() {
                         >
                           <a href={projectData.links.live} target="_blank" rel="noopener noreferrer">
                             <Globe className="mr-2 h-4 w-4" />
-                            Voir en production
+                            {language === 'fr' ? 'Voir en production' : 'View live'}
                             <ExternalLink className="ml-1 h-3 w-3" />
                           </a>
                         </Button>

@@ -441,7 +441,7 @@ export default function EvenementsPage() {
     <div className="min-h-screen bg-background">
       <Navigation />
 
-      <main className="py-12 px-4">
+      <main className="pt-24 pb-16 px-4">
         <div className="container mx-auto max-w-6xl">
           {/* Header */}
           <div className="text-center mb-12">
