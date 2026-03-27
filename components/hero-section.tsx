@@ -1,37 +1,37 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Award, ArrowRight, FileText, Trophy, Sparkles, ChevronDown } from "lucide-react"
+import { Award, ArrowRight, FileText, ChevronDown } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { useLanguage } from "@/components/navigation"
 
 const heroTranslations = {
   fr: {
-    badge: "Double Champion du Monde",
     title1: "Yacouba",
     title2: "DIAKITE",
     subtitle: "Ingénieur Data & Intelligence Artificielle",
-    description: "Double champion du monde Huawei ICT en Chine. Lauréat du Prix National d'Excellence 2025 du Meilleur Talent Numérique. Passionné par la Data Science, le Machine Learning et le Cloud Computing.",
+    description: "Double champion du monde Huawei ICT (2024 & 2025), face à plus de 200 000 candidats de 100 pays. Lauréat du Prix National d\u2019Excellence 2025, décerné par le Président de la République. Passionné par la Data Science, le Machine Learning et le Cloud.",
     viewCV: "Voir mon CV",
     achievements: "Mes Distinctions",
-    stat1Label: "Prix Internationaux",
-    stat2Label: "Certifications",
-    stat3Label: "Pays visités",
-    stat4Label: "Titre Mondial",
+    stat1: "Prix Internationaux",
+    stat2: "Certifications",
+    stat3: "Pays visités",
+    stat4: "Titre Mondial",
+    marquee: "Double Champion du Monde · Data Science · Machine Learning · AWS · Huawei ICT · Deep Learning · Cloud Computing · Intelligence Artificielle · Big Data · Python · NLP · Computer Vision · Prix National d\u2019Excellence",
   },
   en: {
-    badge: "Double World Champion",
     title1: "Yacouba",
     title2: "DIAKITE",
     subtitle: "Data & Artificial Intelligence Engineer",
-    description: "Double world champion Huawei ICT in China. Winner of the 2025 National Excellence Award for Best Digital Talent. Passionate about Data Science, Machine Learning and Cloud Computing.",
+    description: "Double world champion Huawei ICT (2024 & 2025), competing against 200,000+ candidates from 100 countries. Winner of the 2025 National Excellence Award, presented by the President of the Republic. Passionate about Data Science, Machine Learning and Cloud.",
     viewCV: "View my Resume",
     achievements: "My Achievements",
-    stat1Label: "International Awards",
-    stat2Label: "Certifications",
-    stat3Label: "Countries visited",
-    stat4Label: "World Title",
+    stat1: "International Awards",
+    stat2: "Certifications",
+    stat3: "Countries visited",
+    stat4: "World Title",
+    marquee: "Double World Champion · Data Science · Machine Learning · AWS · Huawei ICT · Deep Learning · Cloud Computing · Artificial Intelligence · Big Data · Python · NLP · Computer Vision · National Excellence Award",
   },
 }
 
@@ -39,11 +39,17 @@ export function HeroSection() {
   const { language } = useLanguage()
   const t = heroTranslations[language]
 
+  const stats = [
+    { value: "5+", label: t.stat1 },
+    { value: "10+", label: t.stat2 },
+    { value: "10+", label: t.stat3 },
+    { value: "2x", label: t.stat4 },
+  ]
+
   return (
     <>
-      {/* Section vidéo plein écran */}
+      {/* ===== SECTION 1 — Vidéo cinématique plein écran ===== */}
       <section className="relative h-[60vh] sm:h-[70vh] md:h-[80vh] lg:h-screen w-full overflow-hidden">
-        {/* Video */}
         <video
           autoPlay
           loop
@@ -54,68 +60,92 @@ export function HeroSection() {
           <source src="/plateau-tv.mp4" type="video/mp4" />
         </video>
 
-        {/* Dark overlay */}
-        <div className="absolute inset-0 bg-[#050507]/40" />
+        {/* Overlays */}
+        <div className="absolute inset-0 bg-[#050507]/50" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#C9A84C]/8 via-transparent to-[#00D4FF]/8" />
+        <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(201,168,76,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(201,168,76,0.02)_1px,transparent_1px)] bg-[size:60px_60px]" />
 
-        {/* Gold/Cyan gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#C9A84C]/10 via-transparent to-[#00D4FF]/10" />
-
-        {/* Grid overlay */}
-        <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(201,168,76,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(201,168,76,0.03)_1px,transparent_1px)] bg-[size:60px_60px]" />
-
-        {/* Shimmer effect */}
+        {/* Shimmer */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute -inset-full bg-gradient-to-r from-transparent via-white/5 to-transparent animate-shimmer" />
         </div>
 
-        {/* Bottom gradient fade into next section */}
-        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#050507] to-transparent" />
+        {/* Bottom fade */}
+        <div className="absolute bottom-0 left-0 right-0 h-24 sm:h-48 bg-gradient-to-t from-[#050507] to-transparent" />
 
         {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/50 animate-bounce">
-          <ChevronDown className="h-5 w-5" />
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/40 animate-bounce z-10">
+          <ChevronDown className="h-6 w-6" />
         </div>
       </section>
 
-      {/* Section présentation */}
-      <section className="relative min-h-screen flex items-center overflow-hidden bg-grid">
-      {/* Background effects */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#C9A84C]/5 rounded-full blur-[120px]" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#00D4FF]/5 rounded-full blur-[120px]" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#C9A84C]/3 rounded-full blur-[200px]" />
-      </div>
+      {/* ===== SECTION 2 — Profil centré premium ===== */}
+      <section className="relative py-10 sm:py-28 overflow-hidden">
+        {/* Background */}
+        <div className="absolute inset-0 bg-grid" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#C9A84C]/4 rounded-full blur-[180px]" />
 
-      <div className="container mx-auto px-4 sm:px-6 pt-24 pb-16 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left — Text */}
-          <div className="space-y-8 animate-fade-up">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#C9A84C]/30 bg-[#C9A84C]/5">
-              <Trophy className="h-4 w-4 text-[#C9A84C]" />
-              <span className="text-sm font-medium text-[#C9A84C]">{t.badge}</span>
-              <Sparkles className="h-3 w-3 text-[#C9A84C]" />
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
+          <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
+            {/* Photo carrée avec bordure dorée */}
+            <div className="relative mb-8 animate-fade-up">
+              {/* Glow derrière */}
+              <div className="absolute -inset-3 bg-gradient-to-br from-[#C9A84C]/20 via-transparent to-[#00D4FF]/20 rounded-2xl blur-xl" />
+
+              {/* Bordure dorée */}
+              <div className="absolute -inset-[3px] rounded-2xl bg-gradient-to-br from-[#C9A84C] to-[#E2C97E] opacity-80" />
+
+              {/* Photo */}
+              <div className="relative w-56 h-56 sm:w-72 sm:h-72 lg:w-80 lg:h-80 rounded-2xl overflow-hidden border-2 border-[#050507]">
+                <Image
+                  src="/prof.jpeg"
+                  alt="Yacouba DIAKITE"
+                  fill
+                  className="object-cover"
+                  sizes="320px"
+                  priority
+                />
+              </div>
+
+              {/* Badge champion flottant */}
+              <div className="absolute -bottom-2 -right-2 bg-[#0C0C10] border border-[#C9A84C]/40 rounded-xl px-3 py-1.5 shadow-xl">
+                <span className="text-lg">🏆</span>
+              </div>
             </div>
 
-            {/* Name */}
-            <div>
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]">
-                <span className="text-foreground">{t.title1}</span>
-                <br />
+            {/* Nom */}
+            <div className="mb-6 animate-fade-up" style={{ animationDelay: '0.1s' }}>
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1]" style={{ fontFamily: 'var(--font-display)' }}>
+                <span className="text-foreground">{t.title1} </span>
                 <span className="text-gradient-gold">{t.title2}</span>
-              </h1>
-              <p className="mt-4 text-lg sm:text-xl text-[#00D4FF] font-medium" style={{ fontFamily: 'var(--font-display)' }}>
+              </h2>
+              <p className="mt-3 text-lg sm:text-xl text-[#00D4FF] font-medium" style={{ fontFamily: 'var(--font-display)' }}>
                 {t.subtitle}
               </p>
             </div>
 
             {/* Description */}
-            <p className="text-muted-foreground text-base sm:text-lg max-w-xl leading-relaxed">
+            <p className="text-muted-foreground text-base sm:text-lg max-w-xl leading-relaxed mb-8 animate-fade-up" style={{ animationDelay: '0.2s' }}>
               {t.description}
             </p>
 
+            {/* Stats en ligne */}
+            <div className="flex items-center justify-center gap-6 sm:gap-10 mb-10 animate-fade-up" style={{ animationDelay: '0.3s' }}>
+              {stats.map((stat, i) => (
+                <div key={i} className="flex flex-col items-center">
+                  <span className="text-2xl sm:text-3xl font-bold text-gradient-gold" style={{ fontFamily: 'var(--font-display)' }}>
+                    {stat.value}
+                  </span>
+                  <span className="text-[10px] sm:text-xs text-muted-foreground mt-1 whitespace-nowrap">{stat.label}</span>
+                  {i < stats.length - 1 && (
+                    <div className="hidden" />
+                  )}
+                </div>
+              ))}
+            </div>
+
             {/* CTA */}
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 animate-fade-up" style={{ animationDelay: '0.4s' }}>
               <Button
                 size="lg"
                 className="bg-gradient-to-r from-[#C9A84C] to-[#E2C97E] text-[#050507] hover:opacity-90 font-semibold shadow-lg shadow-[#C9A84C]/20 hover:shadow-[#C9A84C]/40"
@@ -138,72 +168,25 @@ export function HeroSection() {
                 </Link>
               </Button>
             </div>
-
-            {/* Stats */}
-            <div className="grid grid-cols-4 gap-4 pt-4">
-              {[
-                { value: "5+", label: t.stat1Label },
-                { value: "10+", label: t.stat2Label },
-                { value: "15+", label: t.stat3Label },
-                { value: "2x", label: t.stat4Label },
-              ].map((stat, i) => (
-                <div key={i} className="text-center">
-                  <div className="text-2xl sm:text-3xl font-bold text-gradient-gold" style={{ fontFamily: 'var(--font-display)' }}>
-                    {stat.value}
-                  </div>
-                  <div className="text-xs sm:text-sm text-muted-foreground mt-1">{stat.label}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Right — Photo */}
-          <div className="relative flex justify-center lg:justify-end" style={{ animationDelay: '0.2s' }}>
-            <div className="relative">
-              {/* Glow behind photo */}
-              <div className="absolute -inset-4 bg-gradient-to-br from-[#C9A84C]/20 via-transparent to-[#00D4FF]/20 rounded-3xl blur-2xl" />
-
-              {/* Photo container */}
-              <div className="relative w-72 h-72 sm:w-96 sm:h-96 lg:w-[420px] lg:h-[420px] rounded-3xl overflow-hidden border border-[#C9A84C]/20 shadow-2xl shadow-[#C9A84C]/10">
-                <Image
-                  src="/prof.jpeg"
-                  alt="Yacouba DIAKITE"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 640px) 288px, (max-width: 1024px) 384px, 420px"
-                  priority
-                />
-                {/* Overlay gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#050507]/60 via-transparent to-transparent" />
-
-                {/* Bottom info */}
-                <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <div className="flex items-center gap-2">
-                    <Award className="h-5 w-5 text-[#C9A84C]" />
-                    <span className="text-sm font-medium text-white/90">Huawei ICT Competition</span>
-                  </div>
-                  <p className="text-xs text-white/60 mt-1">Shenzhen, China — 2024 & 2025</p>
-                </div>
-              </div>
-
-              {/* Floating badge */}
-              <div className="absolute -top-3 -right-3 bg-[#0C0C10] border border-[#C9A84C]/30 rounded-2xl px-4 py-2 shadow-xl animate-float">
-                <div className="flex items-center gap-2">
-                  <span className="text-2xl">🏆</span>
-                  <div>
-                    <div className="text-xs font-bold text-[#C9A84C]">2x World</div>
-                    <div className="text-xs text-muted-foreground">Champion</div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Bottom fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#050507] to-transparent" />
-    </section>
+      {/* ===== SECTION 3 — Marquee défilant ===== */}
+      <div className="relative py-5 overflow-hidden border-y border-[#C9A84C]/10 bg-[#0C0C10]/50">
+        <div className="flex animate-marquee whitespace-nowrap">
+          {[...Array(3)].map((_, i) => (
+            <span key={i} className="mx-4 text-sm font-medium tracking-widest uppercase" style={{ fontFamily: 'var(--font-display)' }}>
+              {t.marquee.split(' · ').map((word, j) => (
+                <span key={j}>
+                  <span className="text-[#C9A84C]/70">{word}</span>
+                  <span className="text-[#C9A84C]/30 mx-4">✦</span>
+                </span>
+              ))}
+            </span>
+          ))}
+        </div>
+      </div>
     </>
   )
 }

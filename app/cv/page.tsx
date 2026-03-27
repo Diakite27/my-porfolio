@@ -18,6 +18,18 @@ const translations = {
     languages: "Langues",
     experiences: [
       {
+        title: "Data & Software Engineer",
+        company: "Koaloo-fi",
+        period: "10/2025 – Présent",
+        location: "Paris, France",
+        achievements: [
+          "Développement full-stack d'une plateforme SaaS ESG avec architecture serverless AWS (Lambda, DynamoDB)",
+          "Intégration d'IA générative (AWS Bedrock/Claude) pour l'analyse ESG et recommandations automatisées",
+          "Pipelines de données pour scoring, analytics temps réel et gestion multi-tenant",
+          "Automatisation réduisant de 70% le temps d'évaluation ESG et monitoring de centaines de fournisseurs simultanément",
+        ],
+      },
+      {
         title: "Data Scientist",
         company: "Saint-Gobain Conceptions Verrières",
         period: "02/2025 – 08/2025",
@@ -52,6 +64,13 @@ const translations = {
       },
     ],
     educationList: [
+      {
+        degree: "Manager de Portefeuille de Projets - Transition Numérique (BAC +6)",
+        school: "CESI",
+        period: "2025 – Présent",
+        location: "Rouen, France",
+        details: "Management de projets numériques, transformation digitale et stratégie IT",
+      },
       {
         degree: "Ingénieur Informatique",
         school: "CESI École d'Ingénieurs",
@@ -98,6 +117,18 @@ const translations = {
     languages: "Languages",
     experiences: [
       {
+        title: "Data & Software Engineer",
+        company: "Koaloo-fi",
+        period: "10/2025 – Present",
+        location: "Paris, France",
+        achievements: [
+          "Full-stack development of an ESG SaaS platform with AWS serverless architecture (Lambda, DynamoDB)",
+          "Generative AI integration (AWS Bedrock/Claude) for ESG analysis and automated recommendations",
+          "Data pipelines for scoring, real-time analytics and multi-tenant management",
+          "Automation reducing ESG assessment time by 70% and enabling monitoring of hundreds of suppliers simultaneously",
+        ],
+      },
+      {
         title: "Data Scientist",
         company: "Saint-Gobain Conceptions Verrières",
         period: "02/2025 – 08/2025",
@@ -132,6 +163,13 @@ const translations = {
       },
     ],
     educationList: [
+      {
+        degree: "Project Portfolio Manager - Digital Transition (MSc+1)",
+        school: "CESI",
+        period: "2025 – Present",
+        location: "Rouen, France",
+        details: "Digital project management, digital transformation and IT strategy",
+      },
       {
         degree: "Computer Engineering",
         school: "CESI Engineering School",

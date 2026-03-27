@@ -1,9 +1,9 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Award, Calendar, ArrowRight, ChevronLeft, ChevronRight, ExternalLink } from "lucide-react"
+import { Calendar, ArrowRight, ChevronLeft, ChevronRight, ExternalLink, Volume2, VolumeX } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 import { useLanguage } from "@/components/navigation"
@@ -17,34 +17,34 @@ const translations = {
     viewAll: "Toutes mes distinctions",
     highlights: [
       {
-        title: "Prix National d'Excellence 2025 — Meilleur Talent Numérique",
-        description: "Reconnu par le Président de la République comme le Meilleur Talent Numérique et Technologique de Côte d'Ivoire 2025, lors de la cérémonie au Palais de la Présidence.",
-        date: "Août 2025 · Abidjan",
-      },
-      {
-        title: "Ivoire Tech Forum 2025",
-        description: "Invité à la cérémonie d'ouverture officielle de l'Ivoire Tech Forum 2025 au Sofitel Abidjan Hôtel Ivoire, trois jours d'échanges pour positionner le pays comme hub digital régional.",
-        date: "Juillet 2025 · Abidjan",
+        title: "Prix National d\u2019Excellence 2025 — Meilleur Talent Numérique",
+        description: "Reconnu par le Président de la République comme le Meilleur Talent Numérique et Technologique de Côte d\u2019Ivoire, lors de la Journée Nationale de l\u2019Excellence au Palais de la Présidence.",
+        date: "🏅 Distinction Présidentielle · Août 2025 · Abidjan",
       },
       {
         title: "1er Prix Mondial en IA, Big Data & Cloud 2025",
-        description: "Coach de l'équipe nationale de Côte d'Ivoire, lauréate du Premier Prix Mondial lors de la Huawei ICT Competition 2025, réunissant plus de 200 000 étudiants de 100 pays.",
-        date: "Mai 2025 · Shenzhen, Chine",
+        description: "En tant que coach de l\u2019équipe nationale ivoirienne, nous avons décroché le Premier Prix Mondial face à plus de 210 000 étudiants de 2 000 universités dans 100+ pays. Un doublé historique pour la Côte d\u2019Ivoire.",
+        date: "🥇 Champion du Monde · Mai 2025 · Shenzhen",
       },
       {
-        title: "Audience avec le Premier Ministre",
-        description: "Reçu en audience par le Premier Ministre Dr. Beugré Mambé, accompagné du Ministre de la Transition Numérique et du DG de l'ESATIC, suite à ma victoire à la Huawei ICT Competition 2024.",
-        date: "Juin 2024 · Abidjan",
+        title: "Audience avec le Premier Ministre de Côte d\u2019Ivoire",
+        description: "Reçu en audience par le Premier Ministre Dr. Beugré Mambé, accompagné du Ministre de la Transition Numérique Kalil Konaté et du DG de l\u2019ESATIC Prof. Adama Konaté, pour saluer cette victoire mondiale historique.",
+        date: "🏛\uFE0F Audience Officielle · Juin 2024 · Abidjan",
+      },
+      {
+        title: "Ambassadeur Huawei ICT Competition 2025 — Beijing",
+        description: "Nommé ambassadeur mondial de la compétition en présence du Vice-Président de la République, avec pour mission de porter l\u2019excellence numérique ivoirienne sur la scène internationale.",
+        date: "🌍 Nomination Internationale · Sept. 2024 · Beijing",
       },
       {
         title: "Viva Technology 2025 — Paris",
-        description: "Participation au plus grand salon européen dédié à l'innovation technologique et aux startups, échanges avec des leaders du secteur tech mondial.",
-        date: "Juin 2025 · Paris",
+        description: "Participation au plus grand salon européen de l\u2019innovation tech et des startups. Échanges avec les leaders mondiaux du secteur sur l\u2019avenir de l\u2019IA et du cloud.",
+        date: "🚀 Salon International · Juin 2025 · Paris",
       },
       {
-        title: "Ambassadeur Huawei ICT Competition 2025",
-        description: "Nommé ambassadeur en présence du Vice-Président de la République, avec pour mission de promouvoir la compétition et accompagner l'émergence des jeunes talents ivoiriens en TIC.",
-        date: "Sept. 2024 · Beijing, Chine",
+        title: "Ivoire Tech Forum 2025",
+        description: "Invité à la cérémonie d\u2019ouverture officielle au Sofitel Abidjan, sous le parrainage du Premier Ministre. Trois jours d\u2019échanges pour positionner la Côte d\u2019Ivoire comme hub digital régional.",
+        date: "🎤 Forum Technologique · Juillet 2025 · Abidjan",
       },
     ],
   },
@@ -57,33 +57,33 @@ const translations = {
     highlights: [
       {
         title: "2025 National Excellence Award — Best Digital Talent",
-        description: "Recognized by the President of the Republic as the Best Digital and Technological Talent of Côte d'Ivoire 2025, during the ceremony at the Presidential Palace.",
-        date: "August 2025 · Abidjan",
-      },
-      {
-        title: "Ivoire Tech Forum 2025",
-        description: "Invited to the official opening ceremony of Ivoire Tech Forum 2025 at Sofitel Abidjan Hotel Ivoire, three days of exchanges to position the country as a regional digital hub.",
-        date: "July 2025 · Abidjan",
+        description: "Recognized by the President of the Republic as the Best Digital and Technological Talent of Ivory Coast, during the National Excellence Day at the Presidential Palace.",
+        date: "🏅 Presidential Distinction · August 2025 · Abidjan",
       },
       {
         title: "1st World Prize in AI, Big Data & Cloud 2025",
-        description: "Coach of the national team of Côte d'Ivoire, winner of the First World Prize at Huawei ICT Competition 2025, bringing together over 200,000 students from 100 countries.",
-        date: "May 2025 · Shenzhen, China",
+        description: "As coach of the Ivorian national team, we won the First World Prize against 210,000+ students from 2,000 universities across 100+ countries. A historic back-to-back for Ivory Coast.",
+        date: "🥇 World Champion · May 2025 · Shenzhen",
       },
       {
-        title: "Audience with the Prime Minister",
-        description: "Received in audience by Prime Minister Dr. Beugré Mambé, accompanied by the Minister of Digital Transition and the DG of ESATIC, following my victory at Huawei ICT Competition 2024.",
-        date: "June 2024 · Abidjan",
+        title: "Audience with the Prime Minister of Ivory Coast",
+        description: "Received in audience by Prime Minister Dr. Beugré Mambé, accompanied by Minister of Digital Transition Kalil Konaté and ESATIC DG Prof. Adama Konaté, to honor this historic world victory.",
+        date: "🏛\uFE0F Official Audience · June 2024 · Abidjan",
+      },
+      {
+        title: "Huawei ICT Competition 2025 Ambassador — Beijing",
+        description: "Appointed global competition ambassador in the presence of the Vice President of the Republic, tasked with carrying Ivorian digital excellence onto the international stage.",
+        date: "🌍 International Appointment · Sept. 2024 · Beijing",
       },
       {
         title: "Viva Technology 2025 — Paris",
-        description: "Participation in Europe's largest trade fair dedicated to technological innovation and startups, exchanges with global tech sector leaders.",
-        date: "June 2025 · Paris",
+        description: "Participation in Europe's largest tech innovation and startup exhibition. Exchanges with global leaders on the future of AI and cloud computing.",
+        date: "🚀 International Exhibition · June 2025 · Paris",
       },
       {
-        title: "Huawei ICT Competition 2025 Ambassador",
-        description: "Appointed ambassador in the presence of the Vice President of the Republic, with the mission to promote the competition and support the emergence of young Ivorian ICT talents.",
-        date: "Sept. 2024 · Beijing, China",
+        title: "Ivoire Tech Forum 2025",
+        description: "Invited to the official opening ceremony at Sofitel Abidjan, under the patronage of the Prime Minister. Three days of exchanges to position Ivory Coast as a regional digital hub.",
+        date: "🎤 Technology Forum · July 2025 · Abidjan",
       },
     ],
   },
@@ -92,13 +92,8 @@ const translations = {
 const highlightsData = [
   {
     href: "https://www.lemandatexpress.net/2025/08/06/laureats-du-prix-national-dexcellence-2025-le-ministre-kalil-konate-salue-lemergence-de-talents-formes-localement/",
-    images: ["/pne5.jpeg", "/pne1.jpeg", "/pne3.jpeg", "/pne4.jpeg"],
+    images: ["/pne2.jpeg", "/pne1.jpeg", "/pne3.jpeg", "/pne4.jpeg"],
     icon: "🏅",
-  },
-  {
-    href: "https://www.ivoiretechforum.com/",
-    images: ["/itf5.jpeg", "/itf3.jpeg", "/itf1.jpeg"],
-    icon: "🎤",
   },
   {
     href: "https://infodirecte.net/huawei-ict-competition-la-cote-divoire-doublement-sacree-championne-en-informatique",
@@ -111,14 +106,19 @@ const highlightsData = [
     icon: "🤝",
   },
   {
+    href: "",
+    images: ["/prize/amb1.jpeg", "/prize/amb2.jpeg", "/prize/amb3.jpeg", "/prize/amb4.jpeg"],
+    icon: "🌍",
+  },
+  {
     href: "https://vivatechnology.com/",
     images: ["/event/viva.jpeg"],
     icon: "🚀",
   },
   {
-    href: "",
-    images: ["/prize/amb1.jpeg", "/prize/amb2.jpeg", "/prize/amb3.jpeg", "/prize/amb4.jpeg"],
-    icon: "🌍",
+    href: "https://www.ivoiretechforum.com/",
+    images: ["/itf5.jpeg", "/itf3.jpeg", "/itf1.jpeg"],
+    icon: "🎤",
   },
 ]
 
@@ -131,6 +131,15 @@ export function RecentHighlights() {
   }))
 
   const [imageIndexes, setImageIndexes] = useState<number[]>(highlights.map(() => 0))
+  const [isMuted, setIsMuted] = useState(true)
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  const toggleMute = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !videoRef.current.muted
+      setIsMuted(videoRef.current.muted)
+    }
+  }
 
   const handlePrev = (idx: number) => {
     setImageIndexes((prev) =>
@@ -149,7 +158,33 @@ export function RecentHighlights() {
   }
 
   return (
-    <section className="py-24 px-4 relative">
+    <>
+      {/* Vidéo interview */}
+      <section className="relative w-full overflow-hidden bg-[#050507]">
+        <div className="container mx-auto max-w-5xl px-4 py-12 sm:py-16">
+          <div className="aspect-video rounded-2xl overflow-hidden border border-[#C9A84C]/20 shadow-2xl shadow-[#C9A84C]/10 relative">
+            <video
+              ref={videoRef}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover"
+            >
+              <source src="/interv.mp4" type="video/mp4" />
+            </video>
+            <button
+              onClick={toggleMute}
+              className="absolute bottom-4 right-4 h-10 w-10 rounded-full bg-black/60 backdrop-blur-sm flex items-center justify-center text-white/80 hover:text-white hover:bg-black/80 transition-all"
+              aria-label={isMuted ? "Activer le son" : "Couper le son"}
+            >
+              {isMuted ? <VolumeX className="h-5 w-5" /> : <Volume2 className="h-5 w-5" />}
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-24 px-4 relative">
       {/* Background */}
       <div className="absolute inset-0 bg-grid opacity-50" />
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C9A84C]/20 to-transparent" />
@@ -168,8 +203,8 @@ export function RecentHighlights() {
           </p>
         </div>
 
-        {/* Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        {/* Grid — 2 colonnes pour plus d'impact */}
+        <div className="grid md:grid-cols-2 gap-6 mb-12">
           {highlights.map((item, index) => {
             const currentImage = item.images[imageIndexes[index]]
             return (
@@ -177,14 +212,14 @@ export function RecentHighlights() {
                 key={index}
                 className="group bg-[#0C0C10] border-[#1E1E24] hover:border-[#C9A84C]/30 transition-all duration-500 overflow-hidden card-glow"
               >
-                {/* Image */}
-                <div className="aspect-video relative overflow-hidden">
+                {/* Image — plus grande en 2 colonnes */}
+                <div className="aspect-[16/10] relative overflow-hidden">
                   <Image
                     src={currentImage}
                     alt={item.title}
                     fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-contain bg-[#0C0C10] transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 50vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0C0C10] via-transparent to-transparent" />
 
@@ -281,5 +316,6 @@ export function RecentHighlights() {
         </div>
       </div>
     </section>
+    </>
   )
 }

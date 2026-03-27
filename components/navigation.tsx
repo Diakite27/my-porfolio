@@ -4,7 +4,7 @@ import { useState, useEffect, createContext, useContext, useCallback, ReactNode 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
-import { Menu, X, Award, FileText, Briefcase as Certificate, User, Linkedin, MessageCircle } from "lucide-react"
+import { Menu, X, Award, FileText, Briefcase as Certificate, User, Linkedin, MessageCircle, Code2 } from "lucide-react"
 
 interface LanguageContextType {
   language: 'fr' | 'en'
@@ -24,6 +24,7 @@ const translations = {
     cv: "CV",
     achievements: "Distinctions",
     certifications: "Certifications",
+    projects: "Projets",
     contact: "Contact",
     name: "Yacouba DIAKITE",
     whatsappText: "WhatsApp",
@@ -33,6 +34,7 @@ const translations = {
     cv: "Resume",
     achievements: "Achievements",
     certifications: "Certifications",
+    projects: "Projects",
     contact: "Contact",
     name: "Yacouba DIAKITE",
     whatsappText: "WhatsApp",
@@ -90,6 +92,7 @@ export function Navigation() {
     { href: "/cv", label: t("cv"), icon: FileText },
     { href: "/distinctions", label: t("achievements"), icon: Award },
     { href: "/certifications", label: t("certifications"), icon: Certificate },
+    { href: "/projets", label: t("projects"), icon: Code2 },
   ]
 
   return (
@@ -103,8 +106,8 @@ export function Navigation() {
           <div className="flex h-16 items-center justify-between">
             {/* Logo */}
             <Link href="/" className="flex items-center space-x-3 group">
-              <div className="h-9 w-9 rounded-lg bg-gradient-to-br from-[#C9A84C] to-[#E2C97E] flex items-center justify-center shadow-lg shadow-[#C9A84C]/20 group-hover:shadow-[#C9A84C]/40 transition-shadow">
-                <span className="text-[#050507] font-bold text-sm">YD</span>
+              <div className="h-9 w-9 rounded-lg overflow-hidden shadow-lg shadow-[#C9A84C]/20 group-hover:shadow-[#C9A84C]/40 transition-shadow border border-[#C9A84C]/30">
+                <img src="/prof.jpeg" alt="YD" className="w-full h-full object-cover" />
               </div>
               <span className="font-bold text-lg text-foreground hidden sm:block" style={{ fontFamily: 'var(--font-display)' }}>
                 {t("name")}

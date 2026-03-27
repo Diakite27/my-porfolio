@@ -8,8 +8,12 @@ import { LanguageProvider } from "@/components/navigation"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "Yacouba DIAKITE — Double Champion du Monde en Informatique",
+  title: "Yacouba DIAKITE — Double Champion du Monde | Ingénieur Data & IA",
   description: "Ingénieur Data & IA, double champion du monde Huawei ICT, lauréat du Prix National d'Excellence 2025. Portfolio personnel.",
+  icons: {
+    icon: "/favicon.png",
+    apple: "/apple-icon.png",
+  },
 }
 
 export default function RootLayout({

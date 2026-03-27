@@ -493,7 +493,7 @@ export default function CertificationsPage() {
             </p>
 
             {/* Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl mx-auto">
+            <div className="grid grid-cols-3 gap-6 max-w-2xl mx-auto">
               <div className="text-center">
                 <div className="text-3xl font-bold text-primary">{certifications.length}</div>
                 <div className="text-sm text-muted-foreground">{t('stats.certifications')}</div>
@@ -507,12 +507,6 @@ export default function CertificationsPage() {
                   {Math.round(certifications.reduce((acc, cert) => acc + cert.score, 0) / certifications.length)}%
                 </div>
                 <div className="text-sm text-muted-foreground">{t('stats.averageScore')}</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-primary">
-                  {certifications.filter((cert) => cert.level.includes("Expert") || cert.level.includes("expert")).length}
-                </div>
-                <div className="text-sm text-muted-foreground">{t('stats.expertLevel')}</div>
               </div>
             </div>
           </div>
