@@ -1,9 +1,9 @@
 "use client"
 
-import { useState, useRef } from "react"
+import { useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Calendar, ArrowRight, ChevronLeft, ChevronRight, ExternalLink, Volume2, VolumeX } from "lucide-react"
+import { Calendar, ArrowRight, ChevronLeft, ChevronRight, ExternalLink } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 import { useLanguage } from "@/components/navigation"
@@ -131,15 +131,6 @@ export function RecentHighlights() {
   }))
 
   const [imageIndexes, setImageIndexes] = useState<number[]>(highlights.map(() => 0))
-  const [isMuted, setIsMuted] = useState(true)
-  const videoRef = useRef<HTMLVideoElement>(null)
-
-  const toggleMute = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = !videoRef.current.muted
-      setIsMuted(videoRef.current.muted)
-    }
-  }
 
   const handlePrev = (idx: number) => {
     setImageIndexes((prev) =>
@@ -159,31 +150,6 @@ export function RecentHighlights() {
 
   return (
     <>
-      {/* Vidéo interview */}
-      <section className="relative w-full overflow-hidden bg-[#050507]">
-        <div className="container mx-auto max-w-5xl px-4 py-12 sm:py-16">
-          <div className="aspect-video rounded-2xl overflow-hidden border border-[#C9A84C]/20 shadow-2xl shadow-[#C9A84C]/10 relative">
-            <video
-              ref={videoRef}
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full h-full object-cover"
-            >
-              <source src="/interv.mp4" type="video/mp4" />
-            </video>
-            <button
-              onClick={toggleMute}
-              className="absolute bottom-4 right-4 h-10 w-10 rounded-full bg-black/60 backdrop-blur-sm flex items-center justify-center text-white/80 hover:text-white hover:bg-black/80 transition-all"
-              aria-label={isMuted ? "Activer le son" : "Couper le son"}
-            >
-              {isMuted ? <VolumeX className="h-5 w-5" /> : <Volume2 className="h-5 w-5" />}
-            </button>
-          </div>
-        </div>
-      </section>
-
       <section className="py-24 px-4 relative">
       {/* Background */}
       <div className="absolute inset-0 bg-grid opacity-50" />

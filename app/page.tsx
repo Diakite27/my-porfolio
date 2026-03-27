@@ -1,10 +1,11 @@
 "use client"
 
+import { useState, useRef } from "react"
 import { Navigation } from "@/components/navigation"
 import { HeroSection } from "@/components/hero-section"
 import { RecentHighlights } from "@/components/recent-highlights"
 import { Button } from "@/components/ui/button"
-import { Mail, MapPin, Linkedin, Phone, ArrowUpRight, ArrowRight, Globe, ShoppingCart, Users, Newspaper } from "lucide-react"
+import { Mail, MapPin, Linkedin, Phone, ArrowUpRight, ArrowRight, Globe, ShoppingCart, Users, Newspaper, Volume2, VolumeX } from "lucide-react"
 import Link from "next/link"
 import { useLanguage } from "@/components/navigation"
 
@@ -47,6 +48,15 @@ const pressLinks = [
 
 function PressSection() {
   const { language } = useLanguage()
+  const [isMuted, setIsMuted] = useState(true)
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  const toggleMute = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !videoRef.current.muted
+      setIsMuted(videoRef.current.muted)
+    }
+  }
 
   return (
     <section className="py-12 relative overflow-hidden">
@@ -57,6 +67,30 @@ function PressSection() {
           {language === 'fr' ? 'Vu dans la presse & événements' : 'Featured in press & events'}
         </p>
 
+        {/* Vidéo interview */}
+        <div className="max-w-3xl mx-auto mb-10">
+          <div className="aspect-video rounded-2xl overflow-hidden border border-[#C9A84C]/20 shadow-2xl shadow-[#C9A84C]/10 relative">
+            <video
+              ref={videoRef}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover"
+            >
+              <source src="/interv.mp4" type="video/mp4" />
+            </video>
+            <button
+              onClick={toggleMute}
+              className="absolute bottom-4 right-4 h-10 w-10 rounded-full bg-black/60 backdrop-blur-sm flex items-center justify-center text-white/80 hover:text-white hover:bg-black/80 transition-all"
+              aria-label={isMuted ? "Activer le son" : "Couper le son"}
+            >
+              {isMuted ? <VolumeX className="h-5 w-5" /> : <Volume2 className="h-5 w-5" />}
+            </button>
+          </div>
+        </div>
+
+        {/* Liens presse */}
         <div className="flex flex-wrap justify-center items-center gap-x-10 gap-y-4">
           {pressLinks.map((press, i) => (
             <a
