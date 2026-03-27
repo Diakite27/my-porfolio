@@ -1,7 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Award, ArrowRight, FileText, Trophy, Sparkles } from "lucide-react"
+import { Award, ArrowRight, FileText, Trophy, Sparkles, ChevronDown } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { useLanguage } from "@/components/navigation"
@@ -40,7 +40,45 @@ export function HeroSection() {
   const t = heroTranslations[language]
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-grid">
+    <>
+      {/* Section vidéo plein écran */}
+      <section className="relative h-[60vh] sm:h-[70vh] md:h-[80vh] lg:h-screen w-full overflow-hidden">
+        {/* Video */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src="/plateau-tv.mp4" type="video/mp4" />
+        </video>
+
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-[#050507]/40" />
+
+        {/* Gold/Cyan gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#C9A84C]/10 via-transparent to-[#00D4FF]/10" />
+
+        {/* Grid overlay */}
+        <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(201,168,76,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(201,168,76,0.03)_1px,transparent_1px)] bg-[size:60px_60px]" />
+
+        {/* Shimmer effect */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute -inset-full bg-gradient-to-r from-transparent via-white/5 to-transparent animate-shimmer" />
+        </div>
+
+        {/* Bottom gradient fade into next section */}
+        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#050507] to-transparent" />
+
+        {/* Scroll indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/50 animate-bounce">
+          <ChevronDown className="h-5 w-5" />
+        </div>
+      </section>
+
+      {/* Section présentation */}
+      <section className="relative min-h-screen flex items-center overflow-hidden bg-grid">
       {/* Background effects */}
       <div className="absolute inset-0">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#C9A84C]/5 rounded-full blur-[120px]" />
@@ -166,5 +204,6 @@ export function HeroSection() {
       {/* Bottom fade */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#050507] to-transparent" />
     </section>
+    </>
   )
 }
