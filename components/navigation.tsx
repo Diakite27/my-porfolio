@@ -43,8 +43,10 @@ const translations = {
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguageState] = useState<'fr' | 'en'>('fr')
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
+    setMounted(true)
     const saved = localStorage.getItem('lang') as 'fr' | 'en' | null
     if (saved === 'fr' || saved === 'en') {
       setLanguageState(saved)
@@ -62,7 +64,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   return (
     <LanguageContext.Provider value={{ language, setLanguage, t }}>
-      {children}
+      {mounted ? children : <div style={{ visibility: 'hidden' }}>{children}</div>}
     </LanguageContext.Provider>
   )
 }
