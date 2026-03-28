@@ -4,7 +4,7 @@ import { useState, useEffect, createContext, useContext, useCallback, ReactNode 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
-import { Menu, X, Award, FileText, Briefcase as Certificate, User, Linkedin, MessageCircle, Code2 } from "lucide-react"
+import { Menu, X, Award, FileText, Briefcase as Certificate, User, Linkedin, MessageCircle, Code2, Instagram } from "lucide-react"
 
 interface LanguageContextType {
   language: 'fr' | 'en'
@@ -169,6 +169,17 @@ export function Navigation() {
                 aria-label="LinkedIn"
               >
                 <Linkedin className="h-4 w-4" />
+              </a>
+
+              {/* Instagram */}
+              <a
+                href="https://www.instagram.com/diakiteyachte/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hidden sm:flex h-9 w-9 items-center justify-center rounded-lg border border-[#1E1E24] text-muted-foreground hover:text-[#E1306C] hover:border-[#E1306C]/30 transition-all"
+                aria-label="Instagram"
+              >
+                <Instagram className="h-4 w-4" />
               </a>
 
               {/* Mobile menu */}
