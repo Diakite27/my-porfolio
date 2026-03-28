@@ -165,7 +165,7 @@ export function Navigation() {
                 href="https://www.linkedin.com/in/yacouba-diakite-9b0b061a9/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hidden sm:flex h-9 w-9 items-center justify-center rounded-lg border border-[#1E1E24] text-muted-foreground hover:text-[#00D4FF] hover:border-[#00D4FF]/30 transition-all"
+                className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#1E1E24] text-muted-foreground hover:text-[#00D4FF] hover:border-[#00D4FF]/30 transition-all"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="h-4 w-4" />
@@ -176,7 +176,7 @@ export function Navigation() {
                 href="https://www.instagram.com/diakiteyachte/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hidden sm:flex h-9 w-9 items-center justify-center rounded-lg border border-[#1E1E24] text-muted-foreground hover:text-[#E1306C] hover:border-[#E1306C]/30 transition-all"
+                className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#1E1E24] text-muted-foreground hover:text-[#E1306C] hover:border-[#E1306C]/30 transition-all"
                 aria-label="Instagram"
               >
                 <Instagram className="h-4 w-4" />
@@ -217,6 +217,27 @@ export function Navigation() {
                     </Link>
                   )
                 })}
+                {/* Social links mobile */}
+                <div className="flex items-center gap-3 px-4 pt-3 mt-2 border-t border-[#1E1E24]">
+                  <a
+                    href="https://www.linkedin.com/in/yacouba-diakite-9b0b061a9/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="h-9 w-9 flex items-center justify-center rounded-lg border border-[#1E1E24] text-muted-foreground hover:text-[#00D4FF] hover:border-[#00D4FF]/30 transition-all"
+                    aria-label="LinkedIn"
+                  >
+                    <Linkedin className="h-4 w-4" />
+                  </a>
+                  <a
+                    href="https://www.instagram.com/diakiteyachte/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="h-9 w-9 flex items-center justify-center rounded-lg border border-[#1E1E24] text-muted-foreground hover:text-[#E1306C] hover:border-[#E1306C]/30 transition-all"
+                    aria-label="Instagram"
+                  >
+                    <Instagram className="h-4 w-4" />
+                  </a>
+                </div>
               </div>
             </div>
           )}
