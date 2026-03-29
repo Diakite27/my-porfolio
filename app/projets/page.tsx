@@ -1,6 +1,5 @@
 "use client"
 
-import { Navigation } from "@/components/navigation"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -195,7 +194,7 @@ export default function ProjetsPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navigation />
+
 
       <main className="pt-24 pb-16 px-4">
         <div className="container mx-auto max-w-5xl">

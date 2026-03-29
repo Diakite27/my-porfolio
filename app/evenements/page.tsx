@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Navigation } from "@/components/navigation"
+
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -439,7 +439,7 @@ export default function EvenementsPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navigation />
+
 
       <main className="pt-24 pb-16 px-4">
         <div className="container mx-auto max-w-6xl">

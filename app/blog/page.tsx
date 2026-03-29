@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Navigation } from "@/components/navigation"
+
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -404,7 +404,7 @@ L'innovation ouverte est l'avenir de l'innovation d'entreprise.`,
 
   return (
     <div className="min-h-screen bg-background">
-      <Navigation />
+
 
       <main className="py-12 px-4">
         <div className="container mx-auto max-w-6xl">

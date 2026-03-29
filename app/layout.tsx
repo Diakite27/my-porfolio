@@ -4,7 +4,8 @@ import { GeistSans } from "geist/font/sans"
 import { GeistMono } from "geist/font/mono"
 import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
-import { LanguageProvider } from "@/components/navigation"
+import { LanguageProvider, Navigation } from "@/components/navigation"
+import { Footer } from "@/components/footer"
 import "./globals.css"
 
 export const metadata: Metadata = {
@@ -48,7 +49,9 @@ export default function RootLayout({
     <html lang="fr" suppressHydrationWarning>
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable} antialiased`} suppressHydrationWarning>
         <LanguageProvider>
+          <Navigation />
           <Suspense fallback={null}>{children}</Suspense>
+          <Footer />
           <Analytics />
         </LanguageProvider>
       </body>

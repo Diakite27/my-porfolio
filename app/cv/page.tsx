@@ -1,6 +1,5 @@
 "use client"
 
-import { Navigation } from "@/components/navigation"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Download, MapPin, Mail, Phone, Calendar, Award, Briefcase, GraduationCap, Code, Linkedin, ExternalLink } from "lucide-react"
@@ -224,7 +223,7 @@ export default function CVPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navigation />
+
 
       <main className="pt-24 pb-16 px-4">
         <div className="container mx-auto max-w-4xl">
