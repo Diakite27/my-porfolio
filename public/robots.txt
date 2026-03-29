@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://yacouba-diakite.com/sitemap.xml
+Sitemap: https://yacoubadiakite.com/sitemap.xml
