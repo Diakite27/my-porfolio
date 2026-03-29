@@ -438,7 +438,7 @@ export default function DistinctionsPage() {
                               <Button
                                 variant="outline"
                                 size="icon"
-                                className="absolute left-2 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm"
+                                className="absolute left-2 top-1/2 -translate-y-1/2 bg-[#0C0C10]/80 border border-[#C9A84C]/30 text-[#C9A84C] hover:bg-[#C9A84C]/20"
                                 onClick={prevImage}
                               >
                                 <ChevronLeft className="w-4 h-4" />
@@ -446,7 +446,7 @@ export default function DistinctionsPage() {
                               <Button
                                 variant="outline"
                                 size="icon"
-                                className="absolute right-2 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm"
+                                className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#0C0C10]/80 border border-[#C9A84C]/30 text-[#C9A84C] hover:bg-[#C9A84C]/20"
                                 onClick={nextImage}
                               >
                                 <ChevronRight className="w-4 h-4" />

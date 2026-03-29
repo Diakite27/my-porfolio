@@ -101,8 +101,8 @@ export function Navigation() {
     <>
       <nav className={`fixed top-0 z-50 w-full transition-all duration-300 ${
         scrolled
-          ? "bg-[#050507]/90 backdrop-blur-xl border-b border-[#C9A84C]/10"
-          : "bg-transparent"
+          ? "bg-[#050507] backdrop-blur-xl border-b border-[#C9A84C]/10"
+          : "bg-[#050507]/95 backdrop-blur-md"
       }`}>
         <div className="container mx-auto px-4 sm:px-6">
           <div className="flex h-16 items-center justify-between">
@@ -198,7 +198,7 @@ export function Navigation() {
 
           {/* Mobile menu */}
           {isOpen && (
-            <div className="md:hidden py-4 border-t border-[#1E1E24]">
+            <div className="md:hidden py-4 border-t border-[#1E1E24] bg-[#050507]">
               <div className="flex flex-col space-y-1">
                 {navItems.map((item) => {
                   const isActive = pathname === item.href
